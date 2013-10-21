@@ -1,5 +1,7 @@
  * { box-sizing: border-box; }
 
+html, body { min-height: 100%; }
+
  body {
  	font-family: sans-serif;
  	background: url(/img/bg.jpg) no-repeat center center fixed;
@@ -9,10 +11,20 @@
  }
 
 #main {
-	background: rgba(255, 255, 255, 0.8);
- 	width: 100%;
+	background: rgba(255, 255, 255, 0.6);
  	padding: 30px;
- 	margin-top: 80px;
+ 	position: absolute; 
+ 	top:0; 
+ 	right:0; 
+ 	bottom:0; 
+ 	left:0;
+ 	font-size: 24px;
+}
+
+h1 { 
+	font-size: 48px;
+	line-height: 100%;	
+	margin: 0;
 }
 
  ul {
@@ -28,3 +40,7 @@
  li a { 
  	color: black;
  }
+ 	li a:hover { 
+ 		color: rgba(10, 10, 10, 0.7);
+ 		transition: all 0.3s ease-in;
+ 	}
