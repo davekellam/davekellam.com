@@ -3,7 +3,7 @@
 html, body { min-height: 100%; }
 
  body {
- 	font-family: sans-serif;
+ 	font-family: europa, sans-serif;
  	background: url(/img/bg.jpg) no-repeat center center fixed;
  	background-size: cover;
  	margin: 0;
@@ -23,6 +23,7 @@ h1 {
 	font-size: 48px;
 	line-height: 100%;	
 	margin: 0;
+	text-transform: uppercase;
 }
 
  ul {
