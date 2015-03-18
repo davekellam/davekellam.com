@@ -1,4 +1,4 @@
-davekellam.github.io
-====================
+davekellam.com
+==============
 
 Repo for davekellam.com
