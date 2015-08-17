@@ -7,21 +7,27 @@
 
 		<style>
 			html { margin: 0; padding: 0; }
-			body { width: 90%; max-width: 640px; margin: 80px auto 40px; font-family: monospace; font-size: 16px; line-height: 1.4em; }
-			img { width: 256px; height: 256px; float: right; margin: 0 0px 20px 40px; }
+			body { width: 90%; max-width: 500px; margin: 80px auto 40px; font-family: monospace; font-size: 16px; line-height: 1.4em; text-align: center; }
+			img { width: 256px; height: 256px; margin: 0; border-radius: 128px; margin-bottom: 30px; }
 			a { text-decoration: none; color: firebrick; }
+			h2 { margin-top: 40px; }
+			ul { margin: 0; padding: 0;}
+			li { display: inline; list-style: none; }
+			li:not(:last-child):after { content: " / "; }
 		</style>
 	</head>
 	<body>
 		<header>
+			<img src="assets/photo.png">
+
 			<h1>Dave Kellam</h1>
 		</header>
 
 		<section id="main">
 
-			<img src="assets/photo.bw.png">
+			<p>I live in Montreal and make things on the internet. I blog infrequently at <a href="http://eightface.com">Eightface</a> and <a href="http://helveti.ca">Helveti.ca</a>.
 
-			<p>I live in Montreal and make things on the internet (usually with WordPress). I blog infrequently at <a href="http://eightface.com">Eightface</a> and <a href="http://helveti.ca">Helveti.ca</a>.
+			<h2>Elsewhere</h2>
 
 			<ul>
 				<li><a href="http://twitter.com/davekellam/">Twitter</a></li>
@@ -46,9 +52,4 @@
 		ga('send', 'pageview');
 
 	</script>
-	
-	<!-- 
-		Hello source code explorer! It's an awesome way to learn this web stuff.
-		Also, a way to offer you gifs: http://gifs.dave.money
-	-->
 </html>
