@@ -18,7 +18,7 @@
 	</head>
 	<body>
 		<header>
-			<img src="assets/photo.jpg">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/photo.jpg">
 
 			<h1>Dave Kellam</h1>
 		</header>
