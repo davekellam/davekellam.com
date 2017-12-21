@@ -7,8 +7,8 @@
 
 		<style>
 			html { margin: 0; padding: 0; }
-			body { width: 90%; max-width: 900px; margin: 12em auto 6em; font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; }
-			img { width: 256px; height: 256px; margin: 0; border-radius: 128px; margin-bottom: 30px; }
+			body { width: 90%; max-width: 560px; margin: 12em auto 6em; font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; }
+			img { width: 256px; height: auto; margin: 0; margin: 0 48px 48px 0; float: left; }
 			a { text-decoration: none; color: firebrick; }`
 			h2 { margin-top: 8em; }
 			ul { margin: 0; padding: 0;}
@@ -19,14 +19,14 @@
 	</head>
 	<body>
 		<header>
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/photo_x.jpg">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/photo_171220.jpg">
 
 			<h1>Dave Kellam</h1>
 		</header>
 
 		<section id="main">
 
-			<p>I make things on the internet
+			<p>I make things on the internet. Probably not a robot.</p>
 
 			<hr>
 
@@ -41,6 +41,7 @@
 				<li><a href="https://github.com/davekellam/">github</a></li>
 				<li><a href="https://davekellam.tumblr.com">tumblr</a></li>
 			</ul>
+
 		</section>
 
 		<?php wp_footer(); ?>
