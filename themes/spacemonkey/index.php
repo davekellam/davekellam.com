@@ -7,8 +7,9 @@
 
 		<style>
 			html { margin: 0; padding: 0; }
-			body { width: 90%; max-width: 560px; margin: 12em auto 6em; font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; }
-			img { width: 256px; height: auto; margin: 0; margin: 0 48px 48px 0; float: left; }
+			body { font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; background: white }
+			.wrapper { width: 90%; max-width: 400px; margin: 6em auto 4em; }
+			img { width: 250px; height: auto; margin: 0; margin: 0 auto 48px; border-radius: 128px; }
 			a { text-decoration: none; color: firebrick; }`
 			h2 { margin-top: 8em; }
 			ul { margin: 0; padding: 0;}
@@ -18,33 +19,36 @@
 		</style>
 	</head>
 	<body>
-		<header>
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/photo_171220.jpg">
+		<div class="wrapper">
+			<header>
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/photo_171228.jpg">
 
-			<h1>Dave Kellam</h1>
-		</header>
+				<h1>dave kellam</h1>
+			</header>
 
-		<section id="main">
+			<section id="main">
 
-			<p>I make things on the internet. Probably not a robot.</p>
+				<p>developer / designer / teacher</p>
 
-			<hr>
+				<hr>
 
-			<ul>
-				<li><a href="https://www.eightface.com">eightface.com</a></li>
-				<li><a href="http://helveti.ca">helveti.ca</a></li>
-				<li><a href="https://twitter.com/davekellam/">twitter</a></li>
-				<li><a href="https://pinboard.in/u:davekellam">pinboard</a></li>
-				<li><a href="https://www.flickr.com/photos/davekellam/">flickr</a></li>
-				<li><a href="https://instagram.com/davekellam">instagram</a></li>
-				<li><a href="https://last.fm/user/eightface/">last.fm</a></li>
-				<li><a href="https://github.com/davekellam/">github</a></li>
-				<li><a href="https://davekellam.tumblr.com">tumblr</a></li>
-			</ul>
+				<ul>
+					<li><a href="https://www.eightface.com">eightface.com</a></li>
+					<li><a href="http://helveti.ca">helveti.ca</a></li>
+					<li><a href="https://twitter.com/davekellam/">twitter</a></li>
+					<li><a href="https://pinboard.in/u:davekellam">pinboard</a></li>
+					<li><a href="https://www.flickr.com/photos/davekellam/">flickr</a></li>
+					<li><a href="https://instagram.com/davekellam">instagram</a></li>
+					<li><a href="https://last.fm/user/eightface/">last.fm</a></li>
+					<li><a href="https://github.com/davekellam/">github</a></li>
+					<li><a href="https://davekellam.tumblr.com">tumblr</a></li>
+				</ul>
 
-		</section>
+			</section>
 
-		<?php wp_footer(); ?>
+			<?php wp_footer(); ?>
+		
+		</div>
 
 	</body>
 
