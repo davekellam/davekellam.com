@@ -9,7 +9,7 @@
 			html { margin: 0; padding: 0; }
 			body { font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; background: white }
 			.wrapper { width: 90%; max-width: 400px; margin: 6em auto 4em; }
-			img { width: 250px; height: auto; margin: 0; margin: 0 auto 48px; border-radius: 128px; }
+			img { width: 256px; height: auto; margin: 0; margin: 0 auto 2em; border-radius: 128px; }
 			a { text-decoration: none; color: firebrick; }`
 			h2 { margin-top: 8em; }
 			ul { margin: 0; padding: 0;}
@@ -21,7 +21,7 @@
 	<body>
 		<div class="wrapper">
 			<header>
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/photo_171228.jpg">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/photo_180223.jpg">
 
 				<h1>dave kellam</h1>
 			</header>
