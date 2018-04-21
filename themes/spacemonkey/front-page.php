@@ -1,59 +1,64 @@
-<?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package _s
- */
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Dave Kellam</title>
 
-get_header();
-?>
+		<style>
+			html { margin: 0; padding: 0; }
+			body { font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1rem; line-height: 1.6em; text-align: left; background: white }
+			.wrapper { width: 90%; max-width: 400px; margin: 6em auto 4em; }
+			header img { width: 256px; height: auto; margin: 0; margin: 0 auto 2em; border-radius: 128px; }
+			a { text-decoration: none; color: firebrick; }`
+			h2 { margin-top: 8em; }
+			ul { margin: 0; padding: 0;}
+			li { display: inline; list-style: none; }
+			li:not(:last-child):after { content: " / "; color: grey; padding: .5em; }
+			hr { border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
+			img#wpstats { display: none; }
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/photo_180223.jpg">
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">!!asjlkdfj;lkajsdf
+				<h1>dave kellam</h1>
+			</header>
 
-		<?php
-		if ( have_posts() ) :
+			<section id="main">
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+				<p>developer / designer / teacher</p>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+				<hr>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+				<ul>
+					<li><a href="https://www.eightface.com">eightface.com</a></li>
+					<li><a href="http://helveti.ca">helveti.ca</a></li>
+					<li><a href="https://twitter.com/davekellam/">twitter</a></li>
+					<li><a href="https://pinboard.in/u:davekellam">pinboard</a></li>
+					<li><a href="https://www.flickr.com/photos/davekellam/">flickr</a></li>
+					<li><a href="https://instagram.com/davekellam">instagram</a></li>
+					<li><a href="https://last.fm/user/eightface/">last.fm</a></li>
+					<li><a href="https://github.com/davekellam/">github</a></li>
+					<li><a href="https://davekellam.tumblr.com">tumblr</a></li>
+				</ul>
 
-			endwhile;
+			</section>
 
-			the_posts_navigation();
+			<?php wp_footer(); ?>
+		
+		</div>
 
-		else :
+	</body>
 
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-76978-15', 'davekellam.com');
+		ga('send', 'pageview');
+	</script>
+</html>
