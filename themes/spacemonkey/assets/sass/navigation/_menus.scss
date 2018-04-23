@@ -52,6 +52,8 @@
 	li {
 		float: left;
 		position: relative;
+		margin-right: 20px;
+		font-weight: bold;
 
 		&:hover > a,
 		&.focus > a {

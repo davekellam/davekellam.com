@@ -127,9 +127,11 @@ template { display: none; }
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
-body, button, input, select, optgroup, textarea { color: #404040; font-family: sans-serif; font-size: 16px; font-size: 1rem; line-height: 1.5; }
+body, button, input, select, optgroup, textarea { color: #404040; font-family: "SF Mono", Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; font-size: 16px; font-size: 1rem; line-height: 1.5; }
 
 h1, h2, h3, h4, h5, h6 { clear: both; }
+
+.site-title a, .site-title a:visited { font-weight: bold; color: royalblue; }
 
 p { margin-bottom: 1.5em; }
 
@@ -141,7 +143,7 @@ address { margin: 0 0 1.5em; }
 
 pre { background: #eee; font-family: "Courier 10 Pitch", Courier, monospace; font-size: 15px; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1.6em; }
 
-code, kbd, tt, var { font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace; font-size: 15px; font-size: 0.9375rem; }
+code, kbd, tt, var { font-family: Monaco, Consolas, "Inconsolata", "Andale Mono", "DejaVu Sans Mono", monospace; font-size: 15px; font-size: 0.9375rem; }
 
 abbr, acronym { border-bottom: 1px dotted #666; cursor: help; }
 
@@ -201,7 +203,7 @@ textarea { width: 100%; }
 /*--------------------------------------------------------------
 ## Links
 --------------------------------------------------------------*/
-a { color: royalblue; }
+a { color: royalblue; text-decoration: none; }
 
 a:visited { color: purple; }
 
@@ -228,7 +230,7 @@ a:hover, a:active { outline: 0; }
 
 .main-navigation ul li:hover > ul, .main-navigation ul li.focus > ul { left: auto; }
 
-.main-navigation li { float: left; position: relative; }
+.main-navigation li { float: left; position: relative; margin-right: 20px; font-weight: bold; }
 
 .main-navigation a { display: block; text-decoration: none; }
 
@@ -277,6 +279,10 @@ a:hover, a:active { outline: 0; }
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
+.site { max-width: 600px; margin: 0 auto; padding: 20px; }
+
+.site-header { text-align: center; padding-bottom: 20px; border-bottom: 1px solid #ccc; }
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
@@ -287,6 +293,8 @@ a:hover, a:active { outline: 0; }
 .updated:not(.published) { display: none; }
 
 .page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
+
+.entry-meta { font-size: 0.9em; }
 
 .page-links { clear: both; margin: 0 0 1.5em; }
 

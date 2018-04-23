@@ -1,5 +1,18 @@
 // @import "../layout/content-sidebar";
 // @import "../layout/sidebar-content";
+
+.site {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.site-header {
+    text-align: center;
+    padding-bottom: 20px;
+	border-bottom: 1px solid $color__border-input;    
+}
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
