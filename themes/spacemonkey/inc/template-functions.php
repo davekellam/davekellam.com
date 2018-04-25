@@ -42,7 +42,7 @@ function sm_generate_title_and_slug( $data ) {
 		$title = wp_trim_excerpt( $data['post_content'] ); 
 		
 		// Limit generated excerpt to 10 words instead of 55 by wp_trim_excerpt (could go with character length)
-		$title = wp_trim_words( $title, 10, '...' ); 
+		$title = wp_trim_words( $title, 10, '' ); 
 
 		// Set the title and slug
         $data['post_title'] = $title;
