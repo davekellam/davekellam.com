@@ -41,8 +41,8 @@ function sm_generate_title_and_slug( $data ) {
 		// Quick way to strip media (could do something like use media type to inform title)
 		$title = wp_trim_excerpt( $data['post_content'] ); 
 		
-		// Limit generated excerpt to 7 words instead of 55 by wp_trim_excerpt (could go with character length)
-		$title = wp_trim_words( $title, 7, '...' ); 
+		// Limit generated excerpt to 10 words instead of 55 by wp_trim_excerpt (could go with character length)
+		$title = wp_trim_words( $title, 10, '...' ); 
 
 		// Set the title and slug
         $data['post_title'] = $title;
