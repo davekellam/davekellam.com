@@ -120,7 +120,11 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+
+	// create css versions based on file date
+	$css_ver = date( "ymdHi", filemtime( get_stylesheet_directory() . '/style.css' ) );
+
+	wp_enqueue_style( 'spacemonkey', get_template_directory_uri() . '/style.css', false, $css_ver );
 
 	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
