@@ -18,12 +18,13 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
+
 		<span class="entry-meta">
 			<?php _s_posted_on(); ?>
 		</span><!-- .entry-meta -->
-		
-		<?php _s_entry_footer(); ?>
 
+		<?php spacemonkey_tags(); ?>
+		
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
 

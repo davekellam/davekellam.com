@@ -16,8 +16,31 @@
 	margin: 1.5em 0 0;
 }
 
+.entry-footer {
+	@include font-size(0.8);	
+	color: #bbbbbb;
+	a {
+		color: #666666;
+		&:hover { color: $color__link-hover; }
+	}
+
+	.entry-tags {
+		display: inline-block;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		
+		li {
+			display: inline-block;
+			margin-right: 10px;
+			&:before {
+				content: ' / ';
+			}
+		}
+	}
+}
 .entry-meta {
-	font-size: 0.9em;
+	@include font-size(0.8);
 }
 .page-links {
 	clear: both;

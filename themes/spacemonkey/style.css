@@ -294,7 +294,19 @@ a:hover, a:active { outline: 0; }
 
 .page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
 
-.entry-meta { font-size: 0.9em; }
+.entry-footer { font-size: 12.8px; font-size: 0.8rem; color: #bbbbbb; }
+
+.entry-footer a { color: #666666; }
+
+.entry-footer a:hover { color: midnightblue; }
+
+.entry-footer .entry-tags { display: inline-block; list-style-type: none; margin: 0; padding: 0; }
+
+.entry-footer .entry-tags li { display: inline-block; margin-right: 10px; }
+
+.entry-footer .entry-tags li:before { content: ' / '; }
+
+.entry-meta { font-size: 12.8px; font-size: 0.8rem; }
 
 .page-links { clear: both; margin: 0 0 1.5em; }
 
