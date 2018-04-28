@@ -10,7 +10,13 @@
 .site-header {
     text-align: center;
     padding-bottom: 20px;
-	border-bottom: 1px solid $color__border-input;    
+    border-bottom: 1px solid $color__border-input;    
+    .site-title {
+        margin-bottom: 0;
+        a {
+            color: $color__text-main;
+        }
+    }
 }
 
 /*--------------------------------------------------------------
