@@ -34,13 +34,13 @@
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $_s_description; /* WPCS: xss ok. */ ?></p>
+				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 			<?php endif; ?>
 
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', '_s' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', '_s' ); ?></button>
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'menu-1',
