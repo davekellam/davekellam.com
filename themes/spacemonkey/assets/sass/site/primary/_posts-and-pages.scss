@@ -10,6 +10,18 @@
 	display: none;
 }
 
+.archive-meta {
+	@include font-size(0.8);
+	border-bottom: 1px solid #ccc;	
+	color: #bbbbbb;
+	margin: 2em 0 0;
+	padding: 0 0 2em;
+	a {
+		color: #666666;
+		&:hover { color: $color__link-hover; }
+	}
+}
+
 .page-content,
 .entry-content,
 .entry-summary {
@@ -32,7 +44,7 @@
 		
 		li {
 			display: inline-block;
-			margin-right: 10px;
+			margin-right: 1em;
 			&:before {
 				content: ' / ';
 			}

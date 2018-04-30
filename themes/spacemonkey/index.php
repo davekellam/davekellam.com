@@ -20,15 +20,15 @@ get_header();
 
 		<?php
 		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
-
+			if ( is_home() ) :
+			?>
+				<div class="archive-meta">
+					Follow posts with <a href="https://micro.blog/davekellam">Micro.blog</a> 
+					or <a href="<?php echo bloginfo( 'rss2_url' ); ?>">RSS</a>
+				</div>
+			<?php endif; ?>
+			
+			<?php	
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();

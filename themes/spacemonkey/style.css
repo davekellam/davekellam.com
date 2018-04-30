@@ -296,6 +296,12 @@ a:hover, a:active { outline: 0; }
 
 .updated:not(.published) { display: none; }
 
+.archive-meta { font-size: 12.8px; font-size: 0.8rem; border-bottom: 1px solid #ccc; color: #bbbbbb; margin: 2em 0 0; padding: 0 0 2em; }
+
+.archive-meta a { color: #666666; }
+
+.archive-meta a:hover { color: midnightblue; }
+
 .page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
 
 .entry-footer { font-size: 12.8px; font-size: 0.8rem; color: #bbbbbb; }
@@ -306,7 +312,7 @@ a:hover, a:active { outline: 0; }
 
 .entry-footer .entry-tags { display: inline-block; list-style-type: none; margin: 0; padding: 0; }
 
-.entry-footer .entry-tags li { display: inline-block; margin-right: 10px; }
+.entry-footer .entry-tags li { display: inline-block; margin-right: 1em; }
 
 .entry-footer .entry-tags li:before { content: ' / '; }
 
