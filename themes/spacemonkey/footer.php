@@ -11,9 +11,9 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-		<p>&copy;<?php echo date( 'Y' ); ?> &middot; <a href="http://davekellam.com">Dave Kellam</a></p>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+		<p>&copy;1998&ndash;<?php echo date( 'Y' ); ?> &middot; <a href="http://davekellam.com">Dave Kellam</a></p>
+		</div>
+	</footer>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
