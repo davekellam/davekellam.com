@@ -13,6 +13,13 @@
  */
 
 get_header();
+
+$pagination = get_the_posts_pagination( array(
+	'mid_size' => 3,
+	'prev_text' => __( '&laquo;', 'spacemonkey' ),
+	'next_text' => __( '&raquo;', 'spacemonkey' ),
+) );
+
 ?>
 
 	<div id="primary" class="content-area">
@@ -28,7 +35,12 @@ get_header();
 				</div>
 			<?php endif; ?>
 			
-			<?php	
+			<?php
+			
+			if ( is_paged() ) {
+				echo $pagination;
+			}
+
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
@@ -41,12 +53,6 @@ get_header();
 				get_template_part( 'template-parts/content', get_post_type() );
 
 			endwhile;
-
-			$pagination = get_the_posts_pagination( array(
-				'mid_size' => 2,
-				'prev_text' => __( 'Newer', 'textdomain' ),
-				'next_text' => __( 'Older', 'textdomain' ),
-			) );
 
 			echo $pagination;
 
