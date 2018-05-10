@@ -116,6 +116,15 @@ function _s_scripts() {
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
 
 /**
+ * Remove Jetpack styles
+ */
+function remove_jetpack_styles() {
+	wp_deregister_style( 'jetpack-widgets' ); // Widgets
+	// wp_deregister_style( 'jetpack-subscriptions' ); // Subscribe by email
+}
+add_action( 'wp_print_styles', 'remove_jetpack_styles' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
