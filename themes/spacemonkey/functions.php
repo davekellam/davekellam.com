@@ -24,8 +24,9 @@ if ( ! function_exists( '_s_setup' ) ) :
 		 */
 		load_theme_textdomain( '_s', get_template_directory() . '/languages' );
 
-		// Add default posts and comments RSS feed links to head.
+		// Add default posts and comments RSS feed links to head, then remove comments feeds :P
 		add_theme_support( 'automatic-feed-links' );
+		add_filter( 'feed_links_show_comments_feed', '__return_false' );
 
 		/*
 		 * Let WordPress manage the document title.
@@ -76,6 +77,9 @@ if ( ! function_exists( '_s_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		remove_action( 'wp_head', 'wlwmanifest_link' );
+		remove_action( 'wp_head', 'rsd_link' );
 	}
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
