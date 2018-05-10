@@ -79,7 +79,6 @@ if ( ! function_exists( '_s_setup' ) ) :
 		) );
 
 		remove_action( 'wp_head', 'wlwmanifest_link' );
-		remove_action( 'wp_head', 'rsd_link' );
 	}
 endif;
 add_action( 'after_setup_theme', '_s_setup' );
