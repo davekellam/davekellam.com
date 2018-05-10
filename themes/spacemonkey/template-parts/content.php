@@ -10,6 +10,11 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php if ( ! in_category( 'general' ) ) : // @todo refine this a bit more, works for now ?>
+	<header class="entry-header">
+		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+	</header>
+	<?php endif; ?>
 
 	<?php // _s_post_thumbnail(); ?>
 
