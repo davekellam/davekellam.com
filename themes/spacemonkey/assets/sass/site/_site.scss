@@ -19,6 +19,18 @@
     }
 }
 
+.newsletter form {
+    background-color: #eeeeee; 
+    margin-top: 2rem; 
+    padding: .5rem 1.5rem 1.5rem; 
+    text-align: center;
+    a { 
+        color: #666666;
+        font-size: 0.9em;
+		&:hover { color: $color__link-hover; }        
+    }
+}
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
