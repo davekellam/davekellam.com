@@ -13,7 +13,7 @@ get_header(); ?>
 
 		<h2>Monthly Archive</h2>
 
-		<section id="archive">
+		<section class="archive-monthly">
              <ul>
 				<li class="year">2018:</li>
 				<li><a href="https://www.davekellam.com/2018/01/">Jan</a></li>

@@ -302,6 +302,14 @@ a:hover, a:active { outline: 0; }
 
 .archive-meta a:hover { color: midnightblue; }
 
+.archive-monthly ul { padding: 0; margin: 0 0 .7em; }
+
+.archive-monthly ul li { display: inline; padding: 0 .26rem 0 0; }
+
+.archive-monthly ul li.year { font-weight: bold; color: #222; padding-right: .7rem; width: 3.5rem; display: block; float: left; }
+
+.archive-monthly ul li.no-archive { color: #ccc; }
+
 .page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
 
 .entry-footer { font-size: 12.8px; font-size: 0.8rem; color: #bbbbbb; }

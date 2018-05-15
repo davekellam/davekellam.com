@@ -22,6 +22,29 @@
 	}
 }
 
+.archive-monthly ul { 
+	padding: 0; 
+	margin: 0 0 .7em; 
+	
+	li { 
+		display: inline; 
+		padding: 0 .26rem 0 0; 
+
+		&.year { 
+			font-weight: bold;
+			color: #222;
+			padding-right: .7rem; 
+			width: 3.5rem;
+			display: block;
+			float: left;
+		}
+
+		&.no-archive { 
+			color: #ccc; 
+		}
+	}
+}
+
 .page-content,
 .entry-content,
 .entry-summary {
