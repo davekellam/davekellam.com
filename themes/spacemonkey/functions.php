@@ -160,3 +160,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Record collection utility functions
+ */
+require get_template_directory() . '/inc/record-collection.php';
+
