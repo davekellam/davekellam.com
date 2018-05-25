@@ -139,7 +139,7 @@ p { margin-bottom: 1.5em; }
 
 dfn, cite, em, i { font-style: italic; }
 
-blockquote { margin: 0 1.5em; color: #999999; }
+blockquote { margin: 0 1.5em; color: #999999; border-left: 0.1em solid #ddd; padding-left: 1.5em; }
 
 address { margin: 0 0 1.5em; }
 
@@ -220,7 +220,7 @@ a:hover, a:active { outline: 0; }
 --------------------------------------------------------------*/
 .main-navigation { clear: both; display: block; float: left; width: 100%; }
 
-.main-navigation ul { display: none; list-style: none; margin: 0; padding-left: 0; }
+.main-navigation ul { display: none; list-style: none; margin: 0; padding-left: 0; text-transform: uppercase; letter-spacing: 0.1em; }
 
 .main-navigation ul ul { -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2); float: left; position: absolute; top: 100%; left: -999em; z-index: 99999; }
 

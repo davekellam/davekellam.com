@@ -9,6 +9,8 @@ dfn, cite, em, i {
 blockquote {
 	margin: 0 1.5em;
 	color: #999999;
+	border-left: 0.1em solid #ddd;
+    padding-left: 1.5em;
 }
 
 address {
