@@ -135,6 +135,12 @@ h1, h2, h3, h4, h5, h6 { clear: both; }
 
 .site-title a, .site-title a:visited { font-weight: bold; color: royalblue; text-transform: uppercase; letter-spacing: 0.1em; }
 
+.entry-title a { color: #404040; }
+
+.entry-title a:visited { color: #404040; }
+
+.entry-title a:hover { color: midnightblue; }
+
 p { margin-bottom: 1.5em; }
 
 dfn, cite, em, i { font-style: italic; }
