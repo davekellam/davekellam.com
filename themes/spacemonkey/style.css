@@ -131,6 +131,8 @@ body, button, input, select, optgroup, textarea { color: #404040; font-family: "
 
 h1, h2, h3, h4, h5, h6 { clear: both; }
 
+.site-title { font-size: 3em; }
+
 .site-title a, .site-title a:visited { font-weight: bold; color: royalblue; text-transform: uppercase; letter-spacing: 0.1em; }
 
 p { margin-bottom: 1.5em; }
