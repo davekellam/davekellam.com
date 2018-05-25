@@ -139,7 +139,7 @@ p { margin-bottom: 1.5em; }
 
 dfn, cite, em, i { font-style: italic; }
 
-blockquote { margin: 0 1.5em; }
+blockquote { margin: 0 1.5em; color: #999999; }
 
 address { margin: 0 0 1.5em; }
 
