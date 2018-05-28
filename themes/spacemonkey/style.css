@@ -141,6 +141,8 @@ h1, h2, h3, h4, h5, h6 { clear: both; }
 
 .entry-title a:hover { color: midnightblue; }
 
+@media screen and (max-width: 37.5em) { .site-title { font-size: 2.625em; } }
+
 p { margin-bottom: 1.5em; }
 
 dfn, cite, em, i { font-style: italic; }
