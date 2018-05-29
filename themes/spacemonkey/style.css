@@ -240,7 +240,7 @@ a:hover, a:active { outline: 0; }
 
 .main-navigation ul li:hover > ul, .main-navigation ul li.focus > ul { left: auto; }
 
-.main-navigation li { float: left; position: relative; margin-right: 20px; font-weight: bold; }
+.main-navigation li { float: left; position: relative; margin-right: 1em; }
 
 .main-navigation a { display: block; text-decoration: none; }
 
