@@ -257,6 +257,15 @@ a:hover, a:active { outline: 0; }
 .comment-navigation .nav-next, .posts-navigation .nav-next, .post-navigation .nav-next { float: right; text-align: right; width: 50%; }
 
 /*--------------------------------------------------------------
+## Pagination
+--------------------------------------------------------------*/
+.pagination a { color: #bbbbbb; }
+
+.pagination .prev, .pagination .next { color: #666666; font-size: 1.4em; }
+
+.pagination .dots { color: #bbbbbb; }
+
+/*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
 /* Text meant only for screen readers. */
@@ -319,6 +328,8 @@ a:hover, a:active { outline: 0; }
 .archive-meta a { color: #666666; }
 
 .archive-meta a:hover { color: midnightblue; }
+
+.paged .archive-meta { margin-bottom: 3em; }
 
 .archive-monthly ul { padding: 0; margin: 0 0 .7em; }
 
