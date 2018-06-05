@@ -99,3 +99,14 @@ if ( ! function_exists( '_s_post_thumbnail' ) ) :
 		endif; // End is_singular().
 	}
 endif;
+
+if ( ! function_exists ( 'get_svg') ) {
+	function get_svg( $name ) {
+
+		$svg_file = file_get_contents( get_template_directory_uri() . '/assets/svg/' . esc_attr( $name ) . '.svg' );
+		
+		$html = '<span class="simple-icon-' . esc_attr( $name ) . '">' . $svg_file . '</span>'; 
+
+		return $html;
+	}
+}

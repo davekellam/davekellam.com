@@ -308,11 +308,23 @@ a:hover, a:active { outline: 0; }
 
 .site-header .site-branding { margin-bottom: 3em; }
 
-.newsletter form { background-color: #eeeeee; margin-top: 2rem; padding: .5rem 1.5rem 1.5rem; text-align: center; }
+.site-footer { font-size: 14px; font-size: 0.875rem; border-top: 1px solid #cccccc; margin-top: 2em; padding-top: 2em; }
 
-.newsletter form a { color: #666666; font-size: 0.9em; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
 
-.newsletter form a:hover { color: midnightblue; }
+.site-footer ul li { display: inline-block; }
+
+.site-footer a { color: #666666; font-size: 0.9em; }
+
+.site-footer a:hover { color: royalblue; }
+
+.site-footer span[class*="simple-icon-"] { width: 1.5rem; height: 1.5rem; display: inline-block; }
+
+.site-footer span[class*="simple-icon-"] svg { display: inline-block; vertical-align: middle; height: inherit; width: inherit; }
+
+.site-footer span[class*="simple-icon-"] svg:hover { fill: royalblue; -webkit-transition: 300ms; transition: 300ms; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
+
+.site-footer .elsewhere { margin: 0 0 2em; }
 
 /*--------------------------------------------------------------
 ## Posts and pages

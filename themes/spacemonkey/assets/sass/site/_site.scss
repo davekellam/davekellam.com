@@ -22,15 +22,40 @@
     }
 }
 
-.newsletter form {
-    background-color: #eeeeee; 
-    margin-top: 2rem; 
-    padding: .5rem 1.5rem 1.5rem; 
-    text-align: center;
+.site-footer {
+    @include font-size(0.875);
+    border-top: 1px solid #cccccc;
+    margin-top: 2em;
+    padding-top: 2em;
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li { display: inline-block; }
+    }
     a { 
         color: #666666;
         font-size: 0.9em;
-		&:hover { color: $color__link-hover; }        
+		&:hover { color: $color__link; }        
+    }
+    span[class*="simple-icon-"] {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+    }
+    span[class*="simple-icon-"] svg {
+        display: inline-block;
+        vertical-align: middle;
+        height: inherit;
+        width: inherit;
+        &:hover { 
+            fill: $color__link;
+            transition: 300ms;
+            transition-timing-function: ease-out;
+        };         
+    }
+    .elsewhere {
+        margin: 0 0 2em;
     }
 }
 
