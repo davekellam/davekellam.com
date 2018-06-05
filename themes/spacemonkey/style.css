@@ -378,6 +378,8 @@ embed, iframe, object { max-width: 100%; }
 /* Make sure logo link wraps around logo image. */
 .custom-logo-link { display: inline-block; }
 
+.category-general img { max-width: 500px; }
+
 /*--------------------------------------------------------------
 ## Captions
 --------------------------------------------------------------*/
