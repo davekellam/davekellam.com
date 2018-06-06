@@ -45,6 +45,7 @@
     }
     span[class*="simple-icon-"] svg {
         display: inline-block;
+        fill: $color__text-main;
         vertical-align: middle;
         height: inherit;
         width: inherit;

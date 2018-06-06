@@ -320,7 +320,7 @@ a:hover, a:active { outline: 0; }
 
 .site-footer span[class*="simple-icon-"] { width: 1.5rem; height: 1.5rem; display: inline-block; }
 
-.site-footer span[class*="simple-icon-"] svg { display: inline-block; vertical-align: middle; height: inherit; width: inherit; }
+.site-footer span[class*="simple-icon-"] svg { display: inline-block; fill: #404040; vertical-align: middle; height: inherit; width: inherit; }
 
 .site-footer span[class*="simple-icon-"] svg:hover { fill: royalblue; -webkit-transition: 300ms; transition: 300ms; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; }
 
