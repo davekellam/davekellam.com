@@ -215,7 +215,7 @@ textarea { width: 100%; }
 --------------------------------------------------------------*/
 a { color: royalblue; text-decoration: none; }
 
-a:visited { color: purple; }
+a:visited { color: royalblue; }
 
 a:hover, a:focus, a:active { color: midnightblue; }
 
