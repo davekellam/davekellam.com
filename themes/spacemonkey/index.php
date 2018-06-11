@@ -36,11 +36,6 @@ $pagination = get_the_posts_pagination( array(
 			<?php endif; ?>
 			
 			<?php
-			
-			if ( is_paged() ) {
-				echo $pagination;
-			}
-
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
