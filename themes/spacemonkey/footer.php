@@ -23,8 +23,8 @@
 		<div class="site-info">
 			<p>
 				&copy;1998&ndash;<?php echo date( 'Y' ); ?> &middot; 
-				<a href="http://davekellam.com">Dave Kellam</a> &middot;
-				<a href="/contact/">Contact</a>
+				<a href="<?php echo esc_url( home_url( '/colophon/' ) ); ?>">Colophon</a> &middot;
+				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
 			</p>
 		</div>
 
