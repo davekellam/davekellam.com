@@ -24,7 +24,8 @@
 			<p>
 				&copy;1998&ndash;<?php echo date( 'Y' ); ?> &middot; 
 				<a href="<?php echo esc_url( home_url( '/colophon/' ) ); ?>">Colophon</a> &middot;
-				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
+				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a> &middot;
+				<a href="<?php echo esc_url( home_url( 'rss2_url' ) ); ?>">RSS</a>
 			</p>
 		</div>
 
