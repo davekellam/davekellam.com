@@ -19,8 +19,10 @@ object {
 	display: inline-block;
 }
 
-.category-general img {
-	max-width: 500px;
+@media screen and (min-width: 768px) {
+	.category-general img {
+		max-width: 500px;
+	}
 }
 
 /*--------------------------------------------------------------
