@@ -25,15 +25,7 @@ $pagination = get_the_posts_pagination( array(
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 
-		<?php
-		if ( have_posts() ) :
-			if ( is_home() ) :
-			?>
-				<div class="archive-meta">
-					Follow posts with <a href="https://micro.blog/davekellam">Micro.blog</a> 
-					or <a href="<?php echo bloginfo( 'rss2_url' ); ?>">RSS</a>
-				</div>
-			<?php endif; ?>
+		<?php if ( have_posts() ) : ?>
 			
 			<?php
 			/* Start the Loop */
@@ -50,6 +42,7 @@ $pagination = get_the_posts_pagination( array(
 			endwhile;
 
 			echo $pagination;
+
 
 		else :
 
