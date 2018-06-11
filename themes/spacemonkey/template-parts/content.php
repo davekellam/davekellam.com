@@ -36,3 +36,7 @@
 		
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
+
+<?php if ( ! is_single() ) : ?>
+	<hr>
+<?php endif; ?>
