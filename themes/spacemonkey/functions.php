@@ -59,18 +59,6 @@ if ( ! function_exists( '_s_setup' ) ) :
 			'gallery',
 			'caption',
 		) );
-		
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
 
 		remove_action( 'wp_head', 'wlwmanifest_link' );
 	}
