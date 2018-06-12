@@ -298,7 +298,7 @@ a:hover, a:active { outline: 0; }
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
-.site { max-width: 37.5em; margin: 0 auto; padding: 1.5em; }
+.site { max-width: 40.5em; margin: 0 auto; padding: 1.5em; }
 
 .site-header { text-align: center; padding-bottom: 1em; margin-bottom: 1em; border-bottom: 1px solid #ccc; }
 
