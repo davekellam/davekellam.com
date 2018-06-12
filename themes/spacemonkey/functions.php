@@ -59,13 +59,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 			'gallery',
 			'caption',
 		) );
-
-		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( '_s_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
-
+		
 		/**
 		 * Add support for core custom logo.
 		 *
