@@ -298,9 +298,9 @@ a:hover, a:active { outline: 0; }
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
-.site { max-width: 600px; margin: 0 auto; padding: 20px; }
+.site { max-width: 37.5em; margin: 0 auto; padding: 1.5em; }
 
-.site-header { text-align: center; padding-bottom: 20px; border-bottom: 1px solid #ccc; }
+.site-header { text-align: center; padding-bottom: 1.5em; margin-bottom: 1em; border-bottom: 1px solid #ccc; }
 
 .site-header .site-title { margin-bottom: 0; }
 
@@ -331,9 +331,11 @@ a:hover, a:active { outline: 0; }
 --------------------------------------------------------------*/
 .sticky { display: block; }
 
-.hentry { margin: 0 0 1.5em; }
+.hentry { margin: 0 0 3em; }
 
 .updated:not(.published) { display: none; }
+
+.site-description { margin-top: 0; }
 
 .archive-meta { font-size: 12.8px; font-size: 0.8rem; border-bottom: 1px solid #ccc; color: #bbbbbb; margin: 2em 0 0; padding: 0 0 2em; }
 

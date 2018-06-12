@@ -3,13 +3,16 @@
 }
 
 .hentry {
-	margin: 0 0 1.5em;
+	margin: 0 0 3em;
 }
 
 .updated:not(.published) {
 	display: none;
 }
 
+.site-description {
+	margin-top: 0;
+}
 .archive-meta {
 	@include font-size(0.8);
 	border-bottom: 1px solid #ccc;	
