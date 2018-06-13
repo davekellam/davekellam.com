@@ -13,20 +13,9 @@
 .site-description {
 	margin-top: 0;
 }
-.archive-meta {
-	@include font-size(0.8);
-	border-bottom: 1px solid #ccc;	
-	color: #bbbbbb;
-	margin: 2em 0 0;
-	padding: 0 0 2em;
-	a {
-		color: #666666;
-		&:hover { color: $color__link-hover; }
-	}
-}
 
-.paged .archive-meta {
-	margin-bottom: 3em;
+.search-form {
+	margin: 3rem 0;
 }
 
 .archive-monthly ul { 
