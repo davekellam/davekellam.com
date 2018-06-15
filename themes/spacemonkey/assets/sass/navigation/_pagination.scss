@@ -1,12 +1,30 @@
 .pagination {
     a {
-        color: #bbbbbb;
-    }
-    .prev, .next {
         color: #666666;
-        font-size: 1.4em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        span {
+            font-size: 1.4em;
+        }
+        &:hover {
+            color: $color__link;
+        }
     }
-    .dots {
-        color: #bbbbbb;
+
+    .nav-links {
+        align-items: baseline;
+        display: grid;
+        grid-gap: 0;
+        grid-template-areas: "a a a";
+        grid-auto-columns: 33.333%;
+        text-align: center;
     }
+
+    .next {
+        text-align: right;
+    }
+    .prev {
+        text-align: left;
+    }
+    
 }

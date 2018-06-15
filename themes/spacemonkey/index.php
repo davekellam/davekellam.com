@@ -14,11 +14,10 @@
 
 get_header();
 
-$pagination = get_the_posts_pagination( array(
-	'mid_size' => 5,
-	'prev_text' => __( '&larr;', 'spacemonkey' ),
-	'next_text' => __( '&rarr;', 'spacemonkey' ),
-) );
+global $wp_query;
+
+$current_page = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$last_page = $wp_query->max_num_pages;
 
 ?>
 
@@ -27,29 +26,36 @@ $pagination = get_the_posts_pagination( array(
 
 		<?php if ( have_posts() ) : ?>
 			
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
+			<?php while ( have_posts() ) : ?>
+
+				<?php
+
 				the_post();
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
 				get_template_part( 'template-parts/content', get_post_type() );
 
-			endwhile;
+				?>
 
-			echo $pagination;
+			<?php endwhile; ?>
 
+			<nav class="navigation pagination" role="navigation">
+				<h2 class="screen-reader-text">Posts navigation</h2>
+				<div class="nav-links">
+					<?php
+					echo "<div class='prev'>" . get_previous_posts_link( '<span>&larr;</span> Prev' ) . "</div>";
 
-		else :
+					echo "<div class='page-numbers'>" . $current_page . " of " . $last_page . "</div>";
 
-			get_template_part( 'template-parts/content', 'none' );
+					echo "<div class='next'>" . get_next_posts_link( 'Next <span>&rarr;</span>' ) . "</div>";
+					?>
+				</div>
+			</nav>
 
-		endif;
-		?>
+		<?php else : ?>
+
+			<?php get_template_part( 'template-parts/content', 'none' ); ?>
+
+		<?php endif; ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

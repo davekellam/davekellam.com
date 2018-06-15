@@ -259,11 +259,17 @@ a:hover, a:active { outline: 0; }
 /*--------------------------------------------------------------
 ## Pagination
 --------------------------------------------------------------*/
-.pagination a { color: #bbbbbb; }
+.pagination a { color: #666666; text-transform: uppercase; letter-spacing: 0.1em; }
 
-.pagination .prev, .pagination .next { color: #666666; font-size: 1.4em; }
+.pagination a span { font-size: 1.4em; }
 
-.pagination .dots { color: #bbbbbb; }
+.pagination a:hover { color: royalblue; }
+
+.pagination .nav-links { -webkit-box-align: baseline; -ms-flex-align: baseline; align-items: baseline; display: grid; grid-gap: 0; grid-template-areas: "a a a"; grid-auto-columns: 33.333%; text-align: center; }
+
+.pagination .next { text-align: right; }
+
+.pagination .prev { text-align: left; }
 
 /*--------------------------------------------------------------
 # Accessibility
