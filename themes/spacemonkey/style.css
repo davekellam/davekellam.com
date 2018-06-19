@@ -269,7 +269,7 @@ a:hover, a:active { outline: 0; }
 
 .pagination a:hover { color: royalblue; }
 
-.pagination .nav-links { -webkit-box-align: baseline; -ms-flex-align: baseline; align-items: baseline; display: grid; grid-gap: 0; grid-template-areas: "a a a"; grid-auto-columns: 33.333%; text-align: center; }
+.pagination .nav-links { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: grid; grid-gap: 0; grid-template-areas: "a a a"; grid-auto-columns: 33.333%; text-align: center; }
 
 .pagination .next { text-align: right; }
 
