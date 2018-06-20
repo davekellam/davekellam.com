@@ -357,7 +357,11 @@ a:hover, a:active { outline: 0; }
 
 .archive-monthly ul li.no-archive { color: #ccc; }
 
-.page-content, .entry-content, .entry-summary { margin: 1.5em 0 0; }
+.page-content, .entry-summary { margin: 1.5em 0 0; }
+
+.entry-content { margin: 0; }
+
+.entry-title { margin-bottom: 0; }
 
 .entry-footer { font-size: 12.8px; font-size: 0.8rem; color: #bbbbbb; }
 
