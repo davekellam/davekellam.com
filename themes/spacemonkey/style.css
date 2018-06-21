@@ -341,7 +341,7 @@ a:hover, a:active { outline: 0; }
 --------------------------------------------------------------*/
 .sticky { display: block; }
 
-.hentry { margin: 0 0 2em; }
+.hentry { margin: 2em 0 3em; }
 
 .updated:not(.published) { display: none; }
 
