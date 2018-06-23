@@ -129,6 +129,15 @@ function add_indieweb_tags() {
 add_action( 'wp_head', 'add_indieweb_tags' );
 
 /**
+ * Customize Emoji usage
+ */
+function emoji_control() {
+	// Remove Emoji from RSS feed (not a fan of forcing the look on people outside the site,
+	// I find it also has knock-on effects for micro.blog and Reeder that I dislike personally).
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+}
+add_action( 'init', 'emoji_control' );
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
