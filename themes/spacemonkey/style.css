@@ -336,6 +336,8 @@ a:hover, a:active { outline: 0; }
 
 .site-footer .elsewhere { margin: 0 0 2em; }
 
+.site-footer .elsewhere ul li { margin-right: 0.5em; }
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
