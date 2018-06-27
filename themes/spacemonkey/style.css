@@ -349,6 +349,10 @@ a:hover, a:active { outline: 0; }
 
 .search-form { margin: 3rem 0; }
 
+.archive .page-header { border-bottom: 1px solid #ccc; }
+
+.archive .page-header .page-title { text-transform: uppercase; letter-spacing: 0.1em; }
+
 .archive-monthly ul { padding: 0; margin: 0 0 .7em; }
 
 .archive-monthly ul li { display: inline; padding: 0 .26rem 0 0; }
