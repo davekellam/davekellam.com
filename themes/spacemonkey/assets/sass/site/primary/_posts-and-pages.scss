@@ -56,7 +56,7 @@
 
 .entry-content {
 	margin: 0;
-	+ .jetpack-video-wrapper {
+	> .jetpack-video-wrapper {
 		margin-top: 1.6em;
 	}
 }

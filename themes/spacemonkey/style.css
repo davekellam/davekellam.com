@@ -367,7 +367,7 @@ a:hover, a:active { outline: 0; }
 
 .entry-content { margin: 0; }
 
-.entry-content + .jetpack-video-wrapper { margin-top: 1.6em; }
+.entry-content > .jetpack-video-wrapper { margin-top: 1.6em; }
 
 .entry-title { margin-bottom: 0; }
 
