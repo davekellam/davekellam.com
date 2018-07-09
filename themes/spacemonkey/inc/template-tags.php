@@ -56,7 +56,7 @@ endif;
  */
 function spacemonkey_tags() {
 
-	$tags_list = get_the_tag_list( '<ul class="entry-tags"><li>', '</li><li>', '</li></ul>' );
+	$tags_list = get_the_tag_list( '<span class="entry-tags"> / ', ' / ', '</span>' );
 
 	if ( $tags_list ) {
 		echo $tags_list;
