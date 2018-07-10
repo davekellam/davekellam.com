@@ -377,11 +377,7 @@ a:hover, a:active { outline: 0; }
 
 .entry-footer a:hover { color: midnightblue; }
 
-.entry-footer .entry-tags { display: inline-block; list-style-type: none; margin: 0; padding: 0; }
-
-.entry-footer .entry-tags li { display: inline-block; margin-right: 1em; }
-
-.entry-footer .entry-tags li:before { content: ' / '; }
+.entry-footer .entry-tags { list-style-type: none; margin: 0; padding: 0; }
 
 .entry-meta { font-size: 12.8px; font-size: 0.8rem; }
 

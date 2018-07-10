@@ -73,18 +73,9 @@
 	}
 
 	.entry-tags {
-		display: inline-block;
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
-		
-		li {
-			display: inline-block;
-			margin-right: 1em;
-			&:before {
-				content: ' / ';
-			}
-		}
 	}
 }
 .entry-meta {
