@@ -10,7 +10,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if ( ! in_category( 'general' ) ) : // @todo refine this a bit more, works for now ?>
+	<?php if ( ! in_category( 'micro' ) ) : // @todo refine this a bit more, works for now ?>
 	<header class="entry-header">
 		<?php if ( is_singular( 'post' ) ) : ?>
 			<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
