@@ -1,13 +1,13 @@
 <?php
 /**
- * _s functions and definitions
+ * Spacemonkey functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package _s
+ * @package spacemonkey
  */
 
-if ( ! function_exists( '_s_setup' ) ) :
+if ( ! function_exists( 'spacemonkey_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( '_s_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function _s_setup() {
+	function spacemonkey_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on _s, use a find and replace
-		 * to change '_s' to the name of your theme in all the template files.
+		 * If you're building a theme based on spacemonkey, use a find and replace
+		 * to change 'spacemonkey' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( '_s', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'spacemonkey', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head, then remove comments feeds :P
 		add_theme_support( 'automatic-feed-links' );
@@ -45,7 +45,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', '_s' ),
+			'menu-1' => esc_html__( 'Primary', 'spacemonkey' ),
 		) );
 
 		/*
@@ -63,7 +63,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 		remove_action( 'wp_head', 'wlwmanifest_link' );
 	}
 endif;
-add_action( 'after_setup_theme', '_s_setup' );
+add_action( 'after_setup_theme', 'spacemonkey_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -72,33 +72,33 @@ add_action( 'after_setup_theme', '_s_setup' );
  *
  * @global int $content_width
  */
-function _s_content_width() {
+function spacemonkey_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( '_s_content_width', 1200 );
+	$GLOBALS['content_width'] = apply_filters( 'spacemonkey_content_width', 1200 );
 }
-add_action( 'after_setup_theme', '_s_content_width', 0 );
+add_action( 'after_setup_theme', 'spacemonkey_content_width', 0 );
 
 /**
  * Enqueue scripts and styles.
  */
-function _s_scripts() {
+function spacemonkey_scripts() {
 
 	// create css versions based on file date
 	$css_ver = date( "ymdHi", filemtime( get_stylesheet_directory() . '/style.css' ) );
 
 	wp_enqueue_style( 'spacemonkey', get_template_directory_uri() . '/style.css', false, $css_ver );
 
-	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'spacemonkey-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'spacemonkey-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', '_s_scripts' );
+add_action( 'wp_enqueue_scripts', 'spacemonkey_scripts' );
 
 /**
  * Remove Jetpack styles

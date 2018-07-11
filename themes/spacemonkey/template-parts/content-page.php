@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _s
+ * @package spacemonkey
  */
 
 ?>
@@ -14,7 +14,7 @@
 		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
 	</header>
 
-	<?php _s_post_thumbnail(); ?>
+	<?php spacemonkey_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php the_content(); ?>

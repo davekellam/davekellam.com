@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package _s
+ * @package spacemonkey
  */
 
 ?>
@@ -20,7 +20,7 @@
 	</header>
 	<?php endif; ?>
 
-	<?php // _s_post_thumbnail(); ?>
+	<?php // spacemonkey_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php the_content(); ?>
@@ -29,7 +29,7 @@
 	<footer class="entry-footer">
 
 		<span class="entry-meta">
-			<?php _s_posted_on(); ?>
+			<?php spacemonkey_posted_on(); ?>
 		</span>
 
 		<?php spacemonkey_tags(); ?>
