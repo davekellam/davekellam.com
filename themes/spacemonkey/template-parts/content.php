@@ -24,18 +24,18 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
-	</div><!-- .entry-content -->
+	</div>
 
 	<footer class="entry-footer">
 
 		<span class="entry-meta">
 			<?php _s_posted_on(); ?>
-		</span><!-- .entry-meta -->
+		</span>
 
 		<?php spacemonkey_tags(); ?>
 		
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+	</footer>
+</article>
 
 <?php if ( ! is_single() ) : ?>
 	<hr>
