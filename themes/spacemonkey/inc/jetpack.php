@@ -45,6 +45,14 @@ function spacemonkey_jetpack_setup() {
 add_action( 'after_setup_theme', 'spacemonkey_jetpack_setup' );
 
 /**
+ * Force Jetpack to honor DNT
+ *
+ * Do Not Track (DNT) is a feature in web browsers and web sites that asks advertisers and other web software
+ * providers to not track individuals’ browsing habits.
+ */
+add_filter( 'jetpack_honor_dnt_header_for_stats', '__return_true' );
+
+/**
  * Custom render function for Infinite Scroll.
  */
 function spacemonkey_infinite_scroll_render() {
