@@ -31,6 +31,7 @@ get_header(); ?>
 				<li><a href="https://davekellam.com/2018/05/">May</a></li>
 				<li><a href="https://davekellam.com/2018/06/">Jun</a></li>
 				<li><a href="https://davekellam.com/2018/07/">Jul</a></li>
+				<li><a href="https://davekellam.com/2018/08/">Aug</a></li>
 			</ul>
 			<ul>
 				<li class="year">2017:</li>
