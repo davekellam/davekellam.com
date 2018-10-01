@@ -127,7 +127,7 @@ template { display: none; }
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
-body, button, input, select, optgroup, textarea { color: #404040; font-family: "SF Mono", Monaco, Consolas, "Inconsolata", "Andale Mono", "DejaVu Sans Mono", monospace; font-size: 16px; font-size: 1rem; line-height: 1.8; }
+body, button, input, select, optgroup, textarea { color: #404040; font-family: "SF Mono", Menlo, Monaco, Consolas, "Inconsolata", "Andale Mono", "DejaVu Sans Mono", monospace; font-size: 16px; font-size: 1rem; line-height: 1.8; }
 
 h1, h2, h3, h4, h5, h6 { clear: both; }
 
@@ -153,7 +153,7 @@ address { margin: 0 0 1.5em; }
 
 pre { background: #eee; font-family: "Courier 10 Pitch", Courier, monospace; font-size: 15px; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.6em; max-width: 100%; overflow: auto; padding: 1.6em; }
 
-code, kbd, tt, var { font-family: Monaco, Consolas, "Inconsolata", "Andale Mono", "DejaVu Sans Mono", monospace; background: #eee; font-size: 15px; font-size: 0.9375rem; }
+code, kbd, tt, var { font-family: Menlo, Monaco, Consolas, "Inconsolata", "Andale Mono", "DejaVu Sans Mono", monospace; background: #eee; font-size: 15px; font-size: 0.9375rem; }
 
 abbr, acronym { border-bottom: 1px dotted #666; cursor: help; }
 
