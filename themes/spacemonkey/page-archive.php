@@ -22,7 +22,13 @@ get_header(); ?>
 		<h2>Monthly Archive</h2>
 
 		<section class="archive-monthly">
-             <ul>
+            <ul>
+                <li class="year">2019:</li>
+                <li><a href="https://davekellam.com/2019/01/">Jan</a></li>
+                <li class="no-archive">Feb</li>
+                <li class="no-archive">Mar</li>
+            </ul>
+            <ul>
 				<li class="year">2018:</li>
 				<li><a href="https://davekellam.com/2018/01/">Jan</a></li>
 				<li><a href="https://davekellam.com/2018/02/">Feb</a></li>
@@ -33,6 +39,9 @@ get_header(); ?>
 				<li><a href="https://davekellam.com/2018/07/">Jul</a></li>
 				<li><a href="https://davekellam.com/2018/08/">Aug</a></li>
 				<li><a href="https://davekellam.com/2018/09/">Sep</a></li>
+                <li><a href="https://davekellam.com/2018/10/">Oct</a></li>
+                <li><a href="https://davekellam.com/2018/11/">Nov</a></li>
+                <li><a href="https://davekellam.com/2018/12/">Dec</a></li>
 			</ul>
 			<ul>
 				<li class="year">2017:</li>
@@ -48,7 +57,22 @@ get_header(); ?>
 				<li class="no-archive">Oct</li>
 				<li class="no-archive">Nov</li>
 				<li><a href="https://davekellam.com/2017/12/">Dec</a></li>
-			</ul>	
+			</ul>
+            <ul>
+                <li class="year">2016:</li>
+                <li class="no-archive">Jan</li>
+                <li class="no-archive">Feb</li>
+                <li class="no-archive">Mar</li>
+                <li class="no-archive">Apr</li>
+                <li class="no-archive">May</li>
+                <li class="no-archive">Jun</li>
+                <li class="no-archive">Jul</li>
+                <li class="no-archive">Aug</li>
+                <li class="no-archive">Sep</li>
+                <li class="no-archive">Oct</li>
+                <li class="no-archive">Nov</li>
+                <li class="no-archive">Dec</li>
+            </ul>
 			<ul>
 				<li class="year">2015:</li> 
 				<li><a href="https://davekellam.com/2015/01/">Jan</a></li>
