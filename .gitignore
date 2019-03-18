@@ -1,6 +1,6 @@
 plugins/*
 uploads/*
-config.codekit3
 db.php
 debug.log
 .idea
+node_modules

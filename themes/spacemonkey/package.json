@@ -1,0 +1,17 @@
+{
+  "name": "spacemonkey",
+  "version": "1.0.0",
+  "description": "Theme for davekellam.com",
+  "license": "GPL-2.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davekellam/davekellam.com"
+  },
+  "scripts": {
+    "watch": "node-sass assets/sass/style.scss ./style.css --watch",
+    "build": "node-sass assets/sass/style.scss ./style.css --output-style compressed"
+  },
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
