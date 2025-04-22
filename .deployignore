@@ -3,6 +3,7 @@
 .github/*
 README.md
 plugins/.gitkeep
+themes/spacemonkey/*
 themes/davekellam-25/assets/*
 themes/davekellam-25/node_modules/*
 themes/davekellam-25/.npmrc
