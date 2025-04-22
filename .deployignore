@@ -1,0 +1,14 @@
+.deployignore
+.gitignore
+.github/*
+README.md
+plugins/.gitkeep
+themes/davekellam-25/assets/*
+themes/davekellam-25/node_modules/*
+themes/davekellam-25/.npmrc
+themes/davekellam-25/.nvmrc
+themes/davekellam-25/composer.json
+themes/davekellam-25/composer.lock
+themes/davekellam-25/package.json
+themes/davekellam-25/package-lock.json
+themes/davekellam-25/README.md
