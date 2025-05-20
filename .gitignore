@@ -1,6 +1,11 @@
+.DS_Store
+mu-plugins/*
 plugins/*
+themes/*
 uploads/*
 db.php
 debug.log
 .idea
 node_modules
+!themes/davekellam-25/*
+!themes/spacemonkey/*
