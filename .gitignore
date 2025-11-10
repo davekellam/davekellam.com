@@ -1,11 +1,58 @@
-.DS_Store
+# -------------------------
+# BEGIN Ignored Files
+# -------------------------
+
+# ignore all files starting with . or ~
+.*
+~*
+
+# ignore everything in the "wp-content" directory, except:
+/*
+!.github/
+!mu-plugins/
+!plugins/
+!themes/
+
+# ignore all mu-plugins, plugins, and themes
+# unless explicitly allowed at the end of this file
 mu-plugins/*
 plugins/*
 themes/*
-uploads/*
-db.php
-debug.log
-.idea
-node_modules
+
+# ignore dev dependencies directories
+node_modules/
+vendor/
+
+# -------------------------
+# BEGIN Allowed Files
+# -------------------------
+
+# track these files, if they exist
+!.babelrc
+!.browserslistrc
+!.deployignore
+!.editorconfig
+!.eslintignore
+!.eslintrc.js
+!.gitignore
+!.gitkeep
+!.npmrc
+!.nvmrc
+!.stylelintrc.js
+!README.md
+!CHANGELOG.md
+!composer.json
+
+# mu-plugins
+!mu-plugins/core/
+!mu-plugins/extended-cpts/
+
+#mu-plugins loaders
+!mu-plugins/loader*
+
+# plugins
+#!plugins/example-plugin/
+
+# themes
 !themes/davekellam-25/*
 !themes/spacemonkey/*
