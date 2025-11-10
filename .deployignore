@@ -3,6 +3,7 @@
 .github/*
 README.md
 CHANGELOG.md
+phpcs.xml
 plugins/.gitkeep
 themes/spacemonkey/*
 themes/davekellam-25/assets/*

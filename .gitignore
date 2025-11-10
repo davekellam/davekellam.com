@@ -42,6 +42,7 @@ vendor/
 !README.md
 !CHANGELOG.md
 !composer.json
+!phpcs.xml
 
 # mu-plugins
 !mu-plugins/core/

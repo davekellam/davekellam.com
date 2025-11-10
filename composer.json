@@ -1,0 +1,28 @@
+{
+  "name": "davekellam/davekellam.com",
+  "type": "wordpress-site",
+  "authors": [
+    {
+      "name": "Dave Kellam",
+      "email": "kellam@gmail.com",
+      "homepage": "https://davekellam.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "davekellam/phpcs-wp": "dev-main"
+  },
+  "scripts": {
+    "theme:lint": "phpcs --standard=phpcs.xml ./themes/davekellam-25/",
+    "theme:fix": "phpcbf ./themes/davekellam-25/"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

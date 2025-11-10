@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCS WP - davekellam.com">
+	<rule ref="DK-Default" />
+	<description>Just in case I want to extend my personal ruleset on my personal website 🙃</description>
+</ruleset>
