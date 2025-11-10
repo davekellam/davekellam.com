@@ -2,6 +2,7 @@
 .gitignore
 .github/*
 README.md
+CHANGELOG.md
 plugins/.gitkeep
 themes/spacemonkey/*
 themes/davekellam-25/assets/*
