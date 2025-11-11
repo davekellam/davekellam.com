@@ -3,6 +3,7 @@
 .github/*
 README.md
 CHANGELOG.md
+composer.json
 phpcs.xml
 plugins/.gitkeep
 themes/spacemonkey/*
