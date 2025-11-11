@@ -45,7 +45,7 @@ vendor/
 !phpcs.xml
 
 # mu-plugins
-!mu-plugins/core/
+!mu-plugins/dk-core/
 !mu-plugins/extended-cpts/
 
 #mu-plugins loaders
