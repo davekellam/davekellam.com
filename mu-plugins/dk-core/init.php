@@ -1,7 +1,7 @@
 <?php
 /**
  * Setup the core plugin (like a named plugin file or theme's functions.php)
- * 
+ *
  * This allows some things to persist across theme changes and force activation
  *
  * @package davekellam\core

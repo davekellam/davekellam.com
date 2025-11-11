@@ -76,5 +76,5 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
  * <style id="wp-emoji-styles-inline-css">...</style>
  */
 function dequeue_emoji_styles() {
-    wp_dequeue_style( 'wp-emoji-styles' );
+	wp_dequeue_style( 'wp-emoji-styles' );
 }
