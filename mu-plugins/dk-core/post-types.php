@@ -15,15 +15,12 @@ namespace DaveKellam\Core\PostTypes;
  */
 function albums() {
 	register_extended_post_type(
-		'post',
+		'record-album',
 		[
-			'menu_icon' => 'dashicons-megaphone',
+			'menu_icon' => 'dashicons-album',
+			'supports'  => [ 'title', 'editor', 'thumbnail' ],
+			'public'    => false,
+			'show_ui'   => true
 		],
-		[
-			'singular' => 'News',
-			'plural'   => 'News',
-			'slug'     => 'news',
-
-		]
 	);
 }
