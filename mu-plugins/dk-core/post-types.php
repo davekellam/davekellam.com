@@ -1,13 +1,15 @@
 <?php
 /**
  * Setup post types
- *
- * @package davekellam\core
  */
 
 namespace DaveKellam\Core\PostTypes;
 
-// Not alphabetical, defines order in left-hand column
+// Bail if extended CPTs is not available (i.e. no composer install)
+if ( ! function_exists( 'register_extended_post_type' ) ) {
+	return;
+}
+
 add_action( 'init', __NAMESPACE__ . '\\albums' );
 
 /**
