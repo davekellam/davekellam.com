@@ -21,9 +21,9 @@
     "johnbillion/query-monitor": "*"
   },
   "scripts": {
-    "core:lint": "phpcs --standard=phpcs.xml ./mu-plugins/dk-core/",
+    "core:lint": "phpcs --standard=phpcs.xml -s ./mu-plugins/dk-core/",
     "core:fix": "phpcbf ./mu-plugins/dk-core/",
-    "theme:lint": "phpcs --standard=phpcs.xml ./themes/davekellam-25/",
+    "theme:lint": "phpcs --standard=phpcs.xml -s ./themes/davekellam-25/",
     "theme:fix": "phpcbf ./themes/davekellam-25/"
   },
   "config": {
