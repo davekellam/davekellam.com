@@ -9,12 +9,16 @@
     }
   ],
   "require": {
-    "php": ">=8.2"
+    "php": ">=8.2",
+    "johnbillion/extended-cpts": "5.1",
+    "davekellam/dont-mess-up-prod": "dev-main",
+    "composer/installers": "^2.2"   
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "davekellam/phpcs-wp": "dev-main"
+    "davekellam/phpcs-wp": "dev-main",
+    "johnbillion/query-monitor": "*"
   },
   "scripts": {
     "core:lint": "phpcs --standard=phpcs.xml ./mu-plugins/dk-core/",
@@ -24,7 +28,16 @@
   },
   "config": {
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true
+    },
+    "vendor-dir": "mu-plugins/dk-core/vendor"
+  },
+  "extra": {
+      "installer-paths": {
+        "plugins/{$name}/": [
+          "type:wordpress-plugin"
+        ]
+      }
   }
 }
