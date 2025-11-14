@@ -46,7 +46,7 @@ vendor/
 
 # mu-plugins
 !mu-plugins/dk-core/
-!mu-plugins/extended-cpts/
+!mu-plugins/dmup-config.php
 
 #mu-plugins loaders
 !mu-plugins/loader*
