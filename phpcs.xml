@@ -4,6 +4,8 @@
 
     <rule ref="DK-Default">
         <exclude name="Squiz.Commenting.FileComment.MissingPackageTag"/>
+        <!-- Ignore Yoda condition 👽 -->
+		<exclude name="WordPress.PHP.YodaConditions"/>
     </rule>
 	
 </ruleset>
