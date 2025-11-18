@@ -55,5 +55,5 @@ vendor/
 #!plugins/example-plugin/
 
 # themes
-!themes/davekellam-25/*
-!themes/spacemonkey/*
+!themes/davekellam-25/
+!themes/spacemonkey/
