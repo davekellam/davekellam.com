@@ -62,6 +62,7 @@ function dk_uc_render_banner() {
     $gif_url = apply_filters( 'dk_uc_banner_gif_url', DK_UC_PLUGIN_URL . 'assets/gifs/construction.gif' );
     ?>
     <div class="dk-uc-banner" role="region" aria-label="Under construction notice">
+        <a href="#content" class="dk-uc-skip-link">Skip under construction message</a>
         <div class="dk-uc-inner">
             <img class="dk-uc-gif" src="<?php echo esc_url( $gif_url ); ?>" alt="Under construction">
             <div class="dk-uc-text">
