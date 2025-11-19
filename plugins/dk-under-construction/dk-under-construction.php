@@ -15,25 +15,10 @@ define( 'DK_UC_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DK_UC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Determine whether the banner should be shown on the current request.
- */
-function dk_uc_should_display_banner() {
-    if ( is_admin() || wp_doing_ajax() ) {
-        return false;
-    }
-
-    if ( is_user_logged_in() ) {
-        // return false;
-    }
-
-    return true;
-}
-
-/**
  * Enqueue assets only when the banner will be output.
  */
 function dk_uc_enqueue_assets() {
-    if ( ! dk_uc_should_display_banner() ) {
+    if ( is_admin() || wp_doing_ajax() ) {
         return;
     }
 
@@ -70,7 +55,7 @@ add_action( 'wp_enqueue_scripts', 'dk_uc_enqueue_assets' );
  * Print the banner markup immediately after the opening body tag.
  */
 function dk_uc_render_banner() {
-    if ( ! dk_uc_should_display_banner() ) {
+    if ( is_admin() || wp_doing_ajax() ) {
         return;
     }
 
@@ -81,7 +66,10 @@ function dk_uc_render_banner() {
             <img class="dk-uc-gif" src="<?php echo esc_url( $gif_url ); ?>" alt="Under construction">
             <div class="dk-uc-text">
                 <p class="dk-uc-title">Under Construction</p>
-                <p class="dk-uc-message">Building in public 👉 <a href="https://github.com/davekellam/davekellam.com">davekellam./davekellam.com</a></p>
+                <p class="dk-uc-message">Building in public 👉 
+                    <a href="https://github.com/davekellam/davekellam.com">github repo</a> / 
+                    <a href="https://davekellam.com/#">blog post</a>
+                </p>
             </div>
             <button type="button" class="dk-uc-dismiss" aria-label="Hide under construction message">&times;</button>
         </div>
@@ -89,15 +77,3 @@ function dk_uc_render_banner() {
     <?php
 }
 add_action( 'wp_body_open', 'dk_uc_render_banner' );
-
-/**
- * Fallback for themes that do not call wp_body_open().
- */
-function dk_uc_render_banner_fallback() {
-    if ( did_action( 'wp_body_open' ) ) {
-        return;
-    }
-
-    dk_uc_render_banner();
-}
-add_action( 'wp_footer', 'dk_uc_render_banner_fallback', 5 );
