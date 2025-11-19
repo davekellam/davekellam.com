@@ -1,3 +1,7 @@
+/**
+ * LOL hi 🙈
+ */
+
 :root {
     --dk-uc-stripe-1: #4000a1;
     --dk-uc-stripe-2: #ff00b8;
@@ -117,14 +121,19 @@
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* @keyframes dk-uc-sheen {
+@keyframes dk-uc-sheen {
     0% {
-        transform: translateX(-20%);
+        transform: translateX(-30%);
+        opacity: 0.5;
     }
-    20% {
-        transform: translateX(100%);
+    50% {
+        opacity: 0.25;
     }
-} */
+    100% {
+        transform: translateX(120%);
+        opacity: 0.5;
+    }
+}
 
 @media (max-width: 720px) {
     .dk-uc-inner {
@@ -139,7 +148,7 @@
 
 @media (prefers-reduced-motion: reduce) {
     .dk-uc-banner,
-    .dk-uc-banner::after,
+    .dk-uc-banner,
     .dk-uc-dismiss {
         animation: none;
         transition: none;

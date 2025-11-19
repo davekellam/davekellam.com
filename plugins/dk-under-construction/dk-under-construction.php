@@ -4,6 +4,11 @@
  * Description: Display a retro under-construction banner with a 90s style animated gif.
  * Version: 1.1.0
  * Author: Dave Kellam
+ * 
+ * HALLO person reading code 👋
+ * This plugin is probably a hot mess.
+ * I co-opted the robots into reliving the 90s web.
+ * Sorry, not sorry.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
