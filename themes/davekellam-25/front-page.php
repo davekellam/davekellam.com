@@ -1,7 +1,9 @@
 <?php
 /**
- * The main template file
- */
+ * The Homepage Template
+ **/
+
+?>
 
 get_header(); ?>
 
