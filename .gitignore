@@ -52,7 +52,7 @@ vendor/
 !mu-plugins/loader*
 
 # plugins
-#!plugins/example-plugin/
+!plugins/dk-under-construction/
 
 # themes
 !themes/davekellam-25/
