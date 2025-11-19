@@ -26,10 +26,6 @@ function dk_uc_should_display_banner() {
         // return false;
     }
 
-    if ( isset( $_COOKIE['dk_uc_banner_dismissed'] ) && '1' === $_COOKIE['dk_uc_banner_dismissed'] ) {
-        return false;
-    }
-
     return true;
 }
 
@@ -63,8 +59,8 @@ function dk_uc_enqueue_assets() {
         'dk-under-construction',
         'dkUcBanner',
         array(
-            'cookieName'   => 'dk_uc_banner_dismissed',
-            'cookieMaxAge' => DAY_IN_SECONDS,
+            'storageKey' => 'dk_uc_banner_dismissed',
+            'storageTtl' => DAY_IN_SECONDS,
         )
     );
 }
