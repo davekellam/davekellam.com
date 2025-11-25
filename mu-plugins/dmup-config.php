@@ -4,7 +4,7 @@
  * Description: Configuration for the Don't Mess Up Prod plugin
  * Author:      Dave Kellam
  * Author URI:  https://davekellam.com
- * Version:     2025-11-15
+ * Version:     2025-11-25
  * 
  * @see	https://github.com/davekellam/dont-mess-up-prod
  */
@@ -34,7 +34,7 @@ add_filter( 'dmup_minimum_capability', 'dmup_set_minimum_capability' );
 function dmup_set_environment_urls( $urls ) {
 	return [
 		'local'      => 'https://davekellam.local',
-		'staging'    => 'https://davekellam.stage.site',
+		'staging'    => 'https://davekellamcom.stage.site',
 		'production' => 'https://davekellam.com',
 	];
 }
