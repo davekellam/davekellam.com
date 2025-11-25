@@ -74,7 +74,7 @@ function dk_uc_render_banner() {
                 <p class="dk-uc-title">Under Construction</p>
                 <p class="dk-uc-message">Building in public 👉 
                     <a href="https://github.com/davekellam/davekellam.com">github repo</a> / 
-                    <a href="https://davekellam.com/#">blog post</a>
+                    <a href="https://davekellam.com/2025/11/make-your-own-website/">blog post</a>
                 </p>
             </div>
             <button type="button" class="dk-uc-dismiss" aria-label="Hide under construction message">&times;</button>
