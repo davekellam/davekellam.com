@@ -3,8 +3,6 @@
  * The Homepage Template
  **/
 
-?>
-
 get_header(); ?>
 
 <main id="content">
