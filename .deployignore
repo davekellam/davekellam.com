@@ -4,6 +4,7 @@
 README.md
 CHANGELOG.md
 composer.json
+composer.lock
 phpcs.xml
 plugins/.gitkeep
 themes/spacemonkey/package.json
