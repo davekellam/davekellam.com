@@ -103,7 +103,7 @@ endif;
 if ( ! function_exists ( 'get_svg') ) {
 	function get_svg( $name ) {
 
-		$svg_file = file_get_contents( get_template_directory_uri() . '/assets/svg/' . esc_attr( $name ) . '.svg' );
+		$svg_file = file_get_contents( get_stylesheet_directory() . '/assets/svg/' . esc_attr( $name ) . '.svg' );
 		
 		$html = '<span class="simple-icon-' . esc_attr( $name ) . '">' . $svg_file . '</span>'; 
 
