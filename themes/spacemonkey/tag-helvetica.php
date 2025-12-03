@@ -24,9 +24,10 @@ $last_page = $wp_query->max_num_pages;
 				<h2>Helveti.ca Archive</h2>
 				<p>Hello 👋</p>
 
-				<p>If you're looking for something from the old Helveti.ca site, I'm in
-					the process of migrating the posts here from Tubmlr. It's taking a bit
-					longer than anticipated.
+				<p>If you&apos;re looking for something from the old Helveti.ca site, I&apos;m in
+					the process of migrating the posts here from the 
+					<a href="https://www.tumblr.com/helveticablog">Tumblr blog</a>. 
+					It&apos;s taking a bit longer than anticipated.
 				</p>
 				<p><em>Updated: Dec 02 2025</em></p>
 			</header><!-- .page-header -->
