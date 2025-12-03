@@ -13,6 +13,7 @@
 				'menu_id'        => 'footer-menu',
 				'container'      => 'div',
 				'menu_class'     => 'navbar-item',
+				'fallback_cb'    => false,
 			]
 		);
 		?>

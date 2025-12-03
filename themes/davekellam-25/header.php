@@ -31,6 +31,7 @@
 				'menu_id'        => 'menu-main',
 				'container'      => 'div',
 				'menu_class'     => 'header-nav',
+				'fallback_cb'    => false,
 			]
 		);
 		?>
