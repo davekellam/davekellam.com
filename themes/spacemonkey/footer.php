@@ -12,11 +12,12 @@
 	<footer id="colophon" class="site-footer">
 		<div class="elsewhere">
 			<ul>
-				<li><a href="https://twitter.com/davekellam/"><?php echo get_svg( 'twitter' ); ?></a></li>
-				<li><a href="https://pinboard.in/u:davekellam"><?php echo get_svg( 'pinboard' ); ?></a></li>
+				<li><a href="https://bsky.app/profile/davekellam.com"><?php echo get_svg( 'bluesky' ); ?></a></li>
 				<li><a href="https://instagram.com/davekellam"><?php echo get_svg( 'instagram' ); ?></a></li>
+				<li><a href="https://www.flickr.com/photos/davekellam"><?php echo get_svg( 'flickr' ); ?></a></li>
 				<li><a href="https://davekellam.tumblr.com"><?php echo get_svg( 'tumblr' ); ?></a></li>
-				<li><a href="https://micro.blog/davekellam"><?php echo get_svg( 'microblog' ); ?></a></li>
+				<li><a href="https://github.com/davekellam"><?php echo get_svg( 'github' ); ?></a></li>
+				<li><a href="https://www.last.fm/user/eightface"><?php echo get_svg( 'lastfm' ); ?></a></li>
 			</ul>
 		</div>
 
