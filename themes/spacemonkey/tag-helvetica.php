@@ -27,8 +27,10 @@ $last_page = $wp_query->max_num_pages;
 				<p>This serves as an archive for the <a href="https://www.tumblr.com/helveticablog">Helveti.ca Tumblr blog</a>. 
 					That site lost the link to the custom domain, styling, etc.
 				</p>
-				<p><em>Imported: Dec 15 2025</em></p>
-				<p><em>Updated: Dec 15 2025</em></p>
+				<p>
+					<em>Imported: Dec 15 2025</em><br>
+					<em>Updated: Dec 15 2025</em>
+				</p>
 			</header><!-- .page-header -->
 
 			<?php while ( have_posts() ) : ?>
