@@ -110,25 +110,6 @@ function remove_jetpack_styles() {
 add_action( 'wp_print_styles', 'remove_jetpack_styles' );
 
 /**
- * Add header tags for indieweb
- */
-function add_indieweb_tags() { 
-	?>
-	
-	<!-- IndieWeb https://indieweb.org/How_to_set_up_web_sign-in_on_your_own_domain -->
-	<link rel="me" href="https://twitter.com/davekellam" />
-	<link rel="me" href="https://github.com/davekellam" />
-	<link rel="me" href="https://instagram.com/davekellam" />
-	<link rel="me" href="https://davekellam.tumblr.com/" />
-	<link rel="me" href="https://flickr.com/photos/davekellam" />
-	<link rel="me" href="https://www.last.fm/user/eightface" />
-	<link rel="me" href="https://micro.blog/davekellam" />
-
-	<?php
-}
-add_action( 'wp_head', 'add_indieweb_tags' );
-
-/**
  * Customize Emoji usage
  */
 function emoji_control() {
