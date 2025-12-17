@@ -121,7 +121,7 @@
     transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-@keyframes dk-uc-sheen {
+/* @keyframes dk-uc-sheen {
     0% {
         transform: translateX(-30%);
         opacity: 0.5;
@@ -133,7 +133,7 @@
         transform: translateX(120%);
         opacity: 0.5;
     }
-}
+} */
 
 @media (max-width: 720px) {
     .dk-uc-inner {
