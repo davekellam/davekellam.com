@@ -18,6 +18,7 @@
 				<li><a href="https://davekellam.tumblr.com"><?php echo get_svg( 'tumblr' ); ?></a></li>
 				<li><a href="https://github.com/davekellam"><?php echo get_svg( 'github' ); ?></a></li>
 				<li><a href="https://www.last.fm/user/eightface"><?php echo get_svg( 'lastfm' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/feed/' ) ); ?>"><?php echo get_svg( 'rss' ); ?></a></li>
 			</ul>
 		</div>
 
