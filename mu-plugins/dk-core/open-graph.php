@@ -2,10 +2,10 @@
 /**
  * Setup Meta, OpenGraph and other header tags for the site
  *
- * @package davekellam\theme
+ * @package davekellam\core
  */
 
-namespace DaveKellam\Theme\DK25\Meta;
+namespace DaveKellam\Core\Meta;
 
 // Setup Actions and Fitlers
 add_filter( 'wp_head', __NAMESPACE__ . '\\open_graph_tags' );
@@ -74,13 +74,12 @@ function add_indieweb_tags() {
 	?>
 	
 	<!-- IndieWeb https://indieweb.org/How_to_set_up_web_sign-in_on_your_own_domain -->
-	<link rel="me" href="https://twitter.com/davekellam" />
+	<link rel="me" href="https://bsky.app/profile/davekellam.com" />
 	<link rel="me" href="https://github.com/davekellam" />
 	<link rel="me" href="https://instagram.com/davekellam" />
 	<link rel="me" href="https://davekellam.tumblr.com/" />
 	<link rel="me" href="https://flickr.com/photos/davekellam" />
 	<link rel="me" href="https://www.last.fm/user/eightface" />
-	<link rel="me" href="https://micro.blog/davekellam" />
 
 	<?php
 }
