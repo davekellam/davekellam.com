@@ -7,6 +7,9 @@ namespace DaveKellam\Core\PostTypes;
 
 add_action( 'init', __NAMESPACE__ . '\\albums' );
 
+// enable excerpts for pages
+add_post_type_support( 'page', 'excerpt' );
+
 /**
  * Register the News post type
  */
