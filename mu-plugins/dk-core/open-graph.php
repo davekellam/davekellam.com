@@ -26,7 +26,7 @@ function open_graph_tags() {
 		'description' => ( ! empty( get_the_excerpt() ) && ! is_search() ) ? get_the_excerpt() : get_bloginfo( 'description' ),
 		'url'         => home_url( add_query_arg( [], $wp->request ) ) . '/', // get current page url
 		'type'        => 'page',
-		'image'       => ( has_post_thumbnail() ) ? get_the_post_thumbnail_url( get_the_ID(), 'large' ) : davekellam_get_image_url( 'placeholder.png' ),
+		'image'       => ( has_post_thumbnail() ) ? get_the_post_thumbnail_url( get_the_ID(), 'large' ) : '',
 	];
 	// Contexts
 	if ( is_single() ) {
