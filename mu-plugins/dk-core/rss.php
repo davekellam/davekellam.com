@@ -26,6 +26,10 @@ function prepend_featured_image_to_content( $content ) {
 		$featured_image = get_the_post_thumbnail_url( get_the_ID(), 'large' );
 
 		if ( $featured_image ) {
+			if ( str_contains( $content, esc_url( $featured_image ) ) ) {
+				return $content;
+			}
+
 			$image_html = sprintf(
 				'<div class="rss-featured-image"><img src="%s" alt="%s" /></div>',
 				esc_url( $featured_image ),
