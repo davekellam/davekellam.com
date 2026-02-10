@@ -6,6 +6,7 @@
 namespace DaveKellam\Core\PostTypes;
 
 add_action( 'init', __NAMESPACE__ . '\\albums' );
+add_action( 'init', __NAMESPACE__ . '\\books' );
 
 // enable excerpts for pages
 add_post_type_support( 'page', 'excerpt' );
@@ -30,6 +31,31 @@ function albums() {
 		[
 			'singular' => 'Album',
 			'plural'   => 'Albums',
+		]
+	);
+}
+
+/**
+ * Register the Book post type
+ */
+function books() {
+	// Bail if extended CPTs is not available (i.e. no composer install)
+	if ( ! function_exists( 'register_extended_post_type' ) ) {
+		return;
+	}
+
+	register_extended_post_type(
+		'book',
+		[
+			'menu_icon'    => 'dashicons-book',
+			'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
+			'public'       => true,
+			'has_archive'  => true,
+			'show_in_rest' => true,
+		],
+		[
+			'singular' => 'Book',
+			'plural'   => 'Books',
 		]
 	);
 }
