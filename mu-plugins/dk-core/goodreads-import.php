@@ -107,7 +107,9 @@ class Goodreads_Importer {
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
 		$title         = trim( (string) $item->title );
 		$read_at       = $this->parse_date( (string) $item->user_read_at );
-		$post_date     = $read_at ? $read_at->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
+		$date_added    = $this->parse_date( (string) $item->user_date_added );
+		$effective_date = $read_at ?: $date_added;
+		$post_date     = $effective_date ? $effective_date->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
 		$post_date_gmt = $read_at ? get_gmt_from_date( $post_date ) : current_time( 'mysql', 1 );
 
 		return [
@@ -133,6 +135,7 @@ class Goodreads_Importer {
 		$average_rating = (string) $item->average_rating;
 		$read_at        = $this->parse_date( (string) $item->user_read_at );
 		$date_added     = $this->parse_date( (string) $item->user_date_added );
+		$effective_date = $read_at ?: $date_added;
 		$published_year = trim( (string) $item->book_published );
 		$num_pages      = '';
 
@@ -149,7 +152,7 @@ class Goodreads_Importer {
 		$this->update_meta_value( $post_id, 'book_isbn', $isbn );
 		$this->update_meta_value( $post_id, 'book_user_rating', $user_rating );
 		$this->update_meta_value( $post_id, 'book_average_rating', $average_rating );
-		$this->update_meta_value( $post_id, 'book_read_date', $read_at ? $read_at->format( 'Y-m-d' ) : '' );
+		$this->update_meta_value( $post_id, 'book_read_date', $effective_date ? $effective_date->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_date_added', $date_added ? $date_added->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_published_year', $published_year );
 		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );
