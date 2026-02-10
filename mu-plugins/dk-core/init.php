@@ -10,7 +10,7 @@ namespace DaveKellam\Core;
 require_once WPMU_PLUGIN_DIR . '/dk-core/emoji.php';
 require_once WPMU_PLUGIN_DIR . '/dk-core/helpers.php';
 require_once WPMU_PLUGIN_DIR . '/dk-core/goodreads-import.php';
-require_once WPMU_PLUGIN_DIR . '/dk-core/goodreads-admin.php';
+require_once WPMU_PLUGIN_DIR . '/dk-core/book-meta.php';
 require_once WPMU_PLUGIN_DIR . '/dk-core/open-graph.php';
 require_once WPMU_PLUGIN_DIR . '/dk-core/overrides.php';
 require_once WPMU_PLUGIN_DIR . '/dk-core/post-types.php';

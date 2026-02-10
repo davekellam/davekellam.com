@@ -48,10 +48,11 @@ function books() {
 		'book',
 		[
 			'menu_icon'    => 'dashicons-book',
-			'supports'     => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
+			'supports'     => [ 'title', 'thumbnail' ],
 			'public'       => true,
 			'has_archive'  => true,
 			'show_in_rest' => true,
+			'block_editor' => false,
 		],
 		[
 			'singular' => 'Book',
