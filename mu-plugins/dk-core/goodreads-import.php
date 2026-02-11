@@ -106,6 +106,7 @@ class Goodreads_Importer {
 
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
 		$title         = trim( (string) $item->title );
+		$content       = trim( (string) $item->book_description );
 		$read_at       = $this->parse_date( (string) $item->user_read_at );
 		$date_added    = $this->parse_date( (string) $item->user_date_added );
 		$effective_date = $read_at ?: $date_added;
@@ -116,7 +117,7 @@ class Goodreads_Importer {
 			'post_type'         => 'book',
 			'post_status'       => 'publish',
 			'post_title'        => $title,
-			'post_content'      => '',
+			'post_content'      => $content !== '' ? wp_kses_post( $content ) : '',
 			'post_author'       => $author_id,
 			'post_date'         => $post_date,
 			'post_date_gmt'     => $post_date_gmt,
