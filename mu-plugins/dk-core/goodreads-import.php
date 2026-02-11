@@ -127,13 +127,10 @@ class Goodreads_Importer {
 	}
 
 	private function update_meta( int $post_id, \SimpleXMLElement $item ): void {
-		$book_id        = trim( (string) $item->book_id );
 		$review_url     = trim( (string) $item->link );
-		$guid           = trim( (string) $item->guid );
 		$author_name    = trim( (string) $item->author_name );
 		$isbn           = trim( (string) $item->isbn );
 		$user_rating    = (int) $item->user_rating;
-		$average_rating = (string) $item->average_rating;
 		$read_at        = $this->parse_date( (string) $item->user_read_at );
 		$date_added     = $this->parse_date( (string) $item->user_date_added );
 		$effective_date = $read_at ?: $date_added;
@@ -146,13 +143,10 @@ class Goodreads_Importer {
 
 		$cover_url = $this->pick_cover_url( $item );
 
-		$this->update_meta_value( $post_id, 'book_id', $book_id );
 		$this->update_meta_value( $post_id, 'book_review_url', $review_url );
-		$this->update_meta_value( $post_id, 'book_review_guid', $guid );
 		$this->update_meta_value( $post_id, 'book_author', $author_name );
 		$this->update_meta_value( $post_id, 'book_isbn', $isbn );
 		$this->update_meta_value( $post_id, 'book_user_rating', $user_rating );
-		$this->update_meta_value( $post_id, 'book_average_rating', $average_rating );
 		$this->update_meta_value( $post_id, 'book_read_date', $effective_date ? $effective_date->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_date_added', $date_added ? $date_added->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_published_year', $published_year );
@@ -202,7 +196,6 @@ class Goodreads_Importer {
 		$attachment_id = $this->sideload_image( $cover_url, $post_id );
 		if ( $attachment_id ) {
 			set_post_thumbnail( $post_id, $attachment_id );
-			update_post_meta( $post_id, 'book_cover_attachment_id', $attachment_id );
 		}
 	}
 

@@ -109,16 +109,8 @@ function save_book_meta( int $post_id, \WP_Post $post ): void { // phpcs:ignore
 function get_book_meta_fields(): array {
 	return [
 		[
-			'key'   => 'book_id',
-			'label' => 'Book ID',
-		],
-		[
 			'key'   => 'book_review_url',
 			'label' => 'Review URL',
-		],
-		[
-			'key'   => 'book_review_guid',
-			'label' => 'Review GUID',
 		],
 		[
 			'key'   => 'book_author',
@@ -131,10 +123,6 @@ function get_book_meta_fields(): array {
 		[
 			'key'   => 'book_user_rating',
 			'label' => 'User Rating',
-		],
-		[
-			'key'   => 'book_average_rating',
-			'label' => 'Average Rating',
 		],
 		[
 			'key'   => 'book_read_date',
@@ -157,10 +145,6 @@ function get_book_meta_fields(): array {
 		[
 			'key'   => 'book_cover_url',
 			'label' => 'Cover URL',
-		],
-		[
-			'key'   => 'book_cover_attachment_id',
-			'label' => 'Cover Attachment ID',
 		],
 	];
 }
