@@ -55,6 +55,21 @@ function query_modification( $query ) {
 
 	// Set query default to 12 posts
 	$query->set( 'posts_per_page', 12 );
+
+	if ( $query->is_home() || $query->is_category() || $query->is_tag() || $query->is_date() || $query->is_author() ) {
+		$post_types = (array) $query->get( 'post_type' );
+		$post_types = array_filter( $post_types );
+
+		if ( empty( $post_types ) ) {
+			$post_types = [ 'post' ];
+		}
+
+		if ( ! in_array( 'birdsite_tweet', $post_types, true ) ) {
+			$post_types[] = 'birdsite_tweet';
+		}
+
+		$query->set( 'post_type', $post_types );
+	}
 }
 
 /**
