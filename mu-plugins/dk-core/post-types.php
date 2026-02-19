@@ -50,9 +50,8 @@ function books() {
 		[
 			'menu_icon'    => 'dashicons-book',
 			'supports'     => [ 'title', 'thumbnail' , 'editor' ],
-			'public'       => true,
-			'has_archive'  => true,
-			'show_in_rest' => true,
+			'public'       => false,
+			'show_ui'      => true,
 			'block_editor' => false,
 		],
 		[
