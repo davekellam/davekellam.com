@@ -77,15 +77,17 @@ function tweets() {
 		[
 			'menu_icon'    => 'dashicons-megaphone',
 			'supports'     => [ 'title', 'editor' ],
-			'public'       => false,
+			'public'       => true,
 			'show_ui'      => true,
 			'show_in_rest' => true,
 			'block_editor' => false,
+			'rewrite'      => [
+				'permastruct'       => 'tweets/%year%/%monthnum%/%birdsite_tweet%/',
+			],
 		],
 		[
 			'singular' => 'Tweet',
 			'plural'   => 'Tweets',
-			'slug'     => 'tweets',
 		]
 	);
 }
