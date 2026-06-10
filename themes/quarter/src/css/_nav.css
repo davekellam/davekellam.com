@@ -1,0 +1,120 @@
+/* _nav.css — Site header and navigation */
+
+.site-header {
+	border-bottom: 1px solid var(--wp--preset--color--border, #ccc);
+	padding-block: var(--wp--preset--spacing--3, 1rem);
+}
+
+.site-header-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--3, 1rem);
+}
+
+.site-name {
+	font-weight: bold;
+	font-size: var(--wp--preset--font-size--medium, 1.125rem);
+	color: var(--wp--preset--color--text, #404040);
+	text-decoration: none;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.site-name:hover {
+	color: var(--wp--preset--color--link-hover, midnightblue);
+}
+
+/* Primary nav menu */
+.site-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--3, 1rem);
+}
+
+.site-nav a {
+	color: var(--wp--preset--color--text, #404040);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.site-nav a:hover,
+.site-nav .current-menu-item > a {
+	color: var(--wp--preset--color--link, royalblue);
+}
+
+/* Sub-menus hidden by default */
+.site-nav .sub-menu {
+	display: none;
+}
+
+/* Post navigation (prev/next) */
+.post-navigation {
+	margin-top: var(--wp--preset--spacing--5, 2rem);
+	padding-top: var(--wp--preset--spacing--4, 1.5rem);
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+	display: flex;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.post-navigation .nav-previous,
+.post-navigation .nav-next {
+	flex: 1;
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+}
+
+.post-navigation .nav-next {
+	text-align: right;
+}
+
+.post-navigation .nav-label {
+	display: block;
+	color: var(--wp--preset--color--muted, #999);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	margin-bottom: 0.25rem;
+}
+
+/* Archive / query pagination */
+.pagination {
+	margin-top: var(--wp--preset--spacing--5, 2rem);
+}
+
+.pagination .page-numbers {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.pagination .page-numbers li {
+	display: flex;
+}
+
+.pagination a.page-numbers,
+.pagination span.page-numbers {
+	display: inline-block;
+	padding: 0.2rem 0.5rem;
+	color: var(--wp--preset--color--muted, #999);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.pagination a.page-numbers:hover {
+	color: var(--wp--preset--color--link, royalblue);
+}
+
+.pagination .current {
+	color: var(--wp--preset--color--text, #404040);
+	font-weight: bold;
+}

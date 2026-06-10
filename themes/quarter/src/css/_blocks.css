@@ -1,0 +1,94 @@
+/* _blocks.css — WordPress block editor overrides */
+
+/* Ensure block editor content respects the monospace font */
+.wp-block-code,
+.wp-block-preformatted {
+	font-family: var(--wp--preset--font-family--monospace, monospace);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	background: var(--wp--preset--color--subtle, #eee);
+}
+
+/* Pullquote */
+.wp-block-pullquote {
+	border-block: 2px solid var(--wp--preset--color--text, #404040);
+	padding-block: var(--wp--preset--spacing--4, 1.5rem);
+	text-align: left;
+}
+
+.wp-block-pullquote blockquote {
+	margin: 0;
+	padding: 0;
+	border: none;
+	color: inherit;
+}
+
+/* Separator */
+.wp-block-separator {
+	border: none;
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+}
+
+/* Image captions */
+.wp-block-image figcaption,
+.wp-caption-text {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+	text-align: center;
+	margin-top: 0.4rem;
+}
+
+/* Table block */
+.wp-block-table td,
+.wp-block-table th {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+}
+
+/* Buttons */
+.wp-block-button__link,
+.wp-element-button {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	padding: 0.4rem 1rem;
+	border: 1px solid currentColor;
+	text-decoration: none;
+}
+
+/* Cover block */
+.wp-block-cover .wp-block-cover__inner-container {
+	max-width: var(--wp--style--global--content-size, 42rem);
+	margin-inline: auto;
+}
+
+/* Post date in query loops */
+.wp-block-post-date a {
+	color: var(--wp--preset--color--muted, #999);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+}
+
+/* Alignments */
+figure.alignleft,
+img.alignleft {
+	float: left;
+	margin-inline-end: var(--wp--preset--spacing--4, 1.5rem);
+	margin-bottom: var(--wp--preset--spacing--3, 1rem);
+}
+
+figure.alignright,
+img.alignright {
+	float: right;
+	margin-inline-start: var(--wp--preset--spacing--4, 1.5rem);
+	margin-bottom: var(--wp--preset--spacing--3, 1rem);
+}
+
+figure.aligncenter,
+img.aligncenter {
+	display: block;
+	margin-inline: auto;
+}
+
+/* Gallery */
+.wp-block-gallery {
+	gap: var(--wp--preset--spacing--3, 1rem);
+}

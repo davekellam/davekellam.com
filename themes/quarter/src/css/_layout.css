@@ -1,0 +1,53 @@
+/* _layout.css — Site structure and content width */
+
+.site-header,
+.site-main,
+.site-footer {
+	width: 100%;
+}
+
+.site-header-inner,
+.site-main,
+.site-footer-inner {
+	max-width: var(--wp--style--global--content-size, 42rem);
+	margin-inline: auto;
+	padding-inline: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.site-main {
+	padding-block: var(--wp--preset--spacing--5, 2rem);
+	min-height: 60vh;
+}
+
+/* Wide-aligned blocks get extra room */
+.alignwide {
+	max-width: var(--wp--style--global--wide-size, 64rem);
+	margin-inline: auto;
+}
+
+.alignfull {
+	max-width: 100%;
+}
+
+/* Entry list spacing */
+.entry-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--5, 2rem);
+}
+
+.entry {
+	padding-block: var(--wp--preset--spacing--4, 1.5rem);
+	border-bottom: 1px solid var(--wp--preset--color--border, #ccc);
+}
+
+.entry:last-child {
+	border-bottom: none;
+}
+
+/* Page/archive header */
+.page-header {
+	margin-bottom: var(--wp--preset--spacing--5, 2rem);
+	padding-bottom: var(--wp--preset--spacing--4, 1.5rem);
+	border-bottom: 1px solid var(--wp--preset--color--border, #ccc);
+}

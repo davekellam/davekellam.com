@@ -1,0 +1,81 @@
+/* _base.css — Reset and global defaults */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	tab-size: 4;
+}
+
+body {
+	margin: 0;
+	background-color: var(--wp--preset--color--background, #fff);
+	color: var(--wp--preset--color--text, #404040);
+	font-family: var(--wp--preset--font-family--monospace, monospace);
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	line-height: 1.8;
+}
+
+img,
+video,
+svg {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+	margin: var(--wp--preset--spacing--4, 1.5rem) 0;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td,
+th {
+	padding: 0.4rem 0.6rem;
+	border: 1px solid var(--wp--preset--color--border, #ccc);
+	text-align: left;
+}
+
+th {
+	font-weight: bold;
+}
+
+/* Screen-reader utility */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+.screen-reader-text:focus {
+	background: var(--wp--preset--color--background, #fff);
+	border-radius: 2px;
+	box-shadow: 0 0 0 2px var(--wp--preset--color--link, royalblue);
+	clip: auto;
+	clip-path: none;
+	color: var(--wp--preset--color--text, #404040);
+	display: block;
+	font-weight: bold;
+	height: auto;
+	left: 1rem;
+	padding: 0.75rem 1.25rem;
+	top: 1rem;
+	width: auto;
+	z-index: 100000;
+}
