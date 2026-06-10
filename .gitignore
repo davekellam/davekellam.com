@@ -56,4 +56,5 @@ vendor/
 
 # themes
 !themes/davekellam-25/
+!themes/quarter/
 !themes/spacemonkey/

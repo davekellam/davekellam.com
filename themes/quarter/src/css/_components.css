@@ -1,0 +1,169 @@
+/* _components.css — Footer, search form, comments, media */
+
+/* Footer */
+.site-footer {
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+	padding-block: var(--wp--preset--spacing--4, 1.5rem);
+	margin-top: var(--wp--preset--spacing--5, 2rem);
+}
+
+.site-footer-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--3, 1rem);
+}
+
+.footer-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--3, 1rem);
+}
+
+.footer-nav a {
+	color: var(--wp--preset--color--muted, #999);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.footer-nav a:hover {
+	color: var(--wp--preset--color--link, royalblue);
+}
+
+.site-copyright {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+}
+
+.site-copyright a {
+	color: var(--wp--preset--color--muted, #999);
+}
+
+.site-copyright a:hover {
+	color: var(--wp--preset--color--link, royalblue);
+}
+
+/* Search form */
+.search-form {
+	display: flex;
+	gap: 0.5rem;
+	margin-block: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.search-form label {
+	flex: 1;
+}
+
+.search-form input[type="search"] {
+	width: 100%;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	padding: 0.4rem 0.6rem;
+	border: 1px solid var(--wp--preset--color--border, #ccc);
+	background: var(--wp--preset--color--background, #fff);
+	color: var(--wp--preset--color--text, #404040);
+}
+
+.search-form input[type="search"]:focus {
+	outline: 1px dotted var(--wp--preset--color--link, royalblue);
+	outline-offset: 1px;
+}
+
+.search-form input[type="submit"],
+button {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	padding: 0.4rem 1rem;
+	border: 1px solid var(--wp--preset--color--border, #ccc);
+	background: var(--wp--preset--color--subtle, #eee);
+	color: var(--wp--preset--color--text, #404040);
+	cursor: pointer;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.search-form input[type="submit"]:hover,
+button:hover {
+	background: var(--wp--preset--color--link, royalblue);
+	color: #fff;
+	border-color: var(--wp--preset--color--link, royalblue);
+}
+
+/* Entry thumbnail */
+.entry-thumbnail {
+	margin-block: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.entry-thumbnail img {
+	width: 100%;
+}
+
+/* Comments */
+.comments-area {
+	margin-top: var(--wp--preset--spacing--6, 3rem);
+	padding-top: var(--wp--preset--spacing--5, 2rem);
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+}
+
+.comments-title {
+	font-size: var(--wp--preset--font-size--medium, 1.125rem);
+	margin-bottom: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.comment-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.comment-body {
+	padding-block: var(--wp--preset--spacing--4, 1.5rem);
+	border-bottom: 1px solid var(--wp--preset--color--subtle, #eee);
+}
+
+.comment-meta {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+	margin-bottom: 0.5rem;
+}
+
+.comment-author .fn {
+	font-style: normal;
+	font-weight: bold;
+}
+
+/* Comment form */
+.comment-form label {
+	display: block;
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	margin-bottom: 0.25rem;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+	width: 100%;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--base, 1rem);
+	padding: 0.4rem 0.6rem;
+	border: 1px solid var(--wp--preset--color--border, #ccc);
+	background: var(--wp--preset--color--background, #fff);
+	color: var(--wp--preset--color--text, #404040);
+	margin-bottom: var(--wp--preset--spacing--3, 1rem);
+}
+
+.comment-form textarea {
+	min-height: 8rem;
+	resize: vertical;
+}
+
+.no-comments {
+	color: var(--wp--preset--color--muted, #999);
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+}
