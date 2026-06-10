@@ -16,7 +16,7 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_editor_sty
 function enqueue_styles(): void {
 	$css_file = QUARTER_PATH . 'dist/css/style.css';
 	$version  = file_exists( $css_file )
-		? date( 'ymdHi', filemtime( $css_file ) )
+		? gmdate( 'ymdHi', filemtime( $css_file ) )
 		: QUARTER_VERSION;
 
 	wp_enqueue_style(
@@ -34,7 +34,7 @@ function enqueue_styles(): void {
 function enqueue_editor_styles(): void {
 	$css_file = QUARTER_PATH . 'dist/css/style.css';
 	$version  = file_exists( $css_file )
-		? date( 'ymdHi', filemtime( $css_file ) )
+		? gmdate( 'ymdHi', filemtime( $css_file ) )
 		: QUARTER_VERSION;
 
 	wp_enqueue_style(

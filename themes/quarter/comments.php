@@ -21,14 +21,14 @@ if ( post_password_required() ) {
 				printf(
 					/* translators: %s: post title */
 					esc_html__( 'One comment on &ldquo;%s&rdquo;', 'quarter' ),
-					get_the_title()
+					get_the_title() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			} else {
 				printf(
 					/* translators: 1: number of comments, 2: post title */
 					esc_html__( '%1$s comments on &ldquo;%2$s&rdquo;', 'quarter' ),
-					number_format_i18n( $comment_count ),
-					get_the_title()
+					number_format_i18n( $comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					get_the_title() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 			?>

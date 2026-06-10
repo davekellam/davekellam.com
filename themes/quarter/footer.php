@@ -1,3 +1,9 @@
+<?php
+/**
+ * The template for displaying the footer.
+ */
+
+?>
 <footer class="site-footer">
 	<div class="site-footer-inner">
 		<nav class="footer-nav" aria-label="<?php esc_attr_e( 'Footer navigation', 'quarter' ); ?>">

@@ -67,9 +67,9 @@ function register_block_templates(): void {
 			'content' => quarter_block_template( 'index' ),
 		],
 		'quarter//single'  => [
-			'title'       => __( 'Single Post', 'quarter' ),
-			'post_types'  => [ 'post' ],
-			'content'     => quarter_block_template( 'single' ),
+			'title'      => __( 'Single Post', 'quarter' ),
+			'post_types' => [ 'post' ],
+			'content'    => quarter_block_template( 'single' ),
 		],
 		'quarter//page'    => [
 			'title'      => __( 'Page', 'quarter' ),
@@ -102,8 +102,8 @@ function register_block_templates(): void {
  * @return string Block template markup.
  */
 function quarter_block_template( string $slug ): string {
-	$header  = '<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->';
-	$footer  = '<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->';
+	$header = '<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->';
+	$footer = '<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->';
 
 	$templates = [
 		'index'   => $header . '
