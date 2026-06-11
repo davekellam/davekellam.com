@@ -40,6 +40,8 @@ function theme_setup(): void {
 	// Conditionally load block assets only when a block is present on the page.
 	add_filter( 'should_load_separate_core_block_assets', '__return_true' );
 
+	add_post_type_support( 'page', 'excerpt' );
+
 	register_nav_menus(
 		[
 			'primary' => esc_html__( 'Primary Menu', 'quarter' ),
