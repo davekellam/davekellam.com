@@ -16,3 +16,11 @@ themes/davekellam-25/.nvmrc
 themes/davekellam-25/package.json
 themes/davekellam-25/package-lock.json
 themes/davekellam-25/README.md
+themes/quarter/src/*
+themes/quarter/node_modules/*
+themes/quarter/.npmrc
+themes/quarter/.nvmrc
+themes/quarter/package.json
+themes/quarter/package-lock.json
+themes/quarter/README.md
+themes/quarter/postcss.config.js
