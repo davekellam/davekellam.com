@@ -59,3 +59,6 @@ vendor/
 !themes/davekellam-25/
 !themes/quarter/
 !themes/spacemonkey/
+
+# ignore dist files in themes
+themes/*/dist/
