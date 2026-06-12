@@ -47,6 +47,7 @@ vendor/
 # mu-plugins
 !mu-plugins/dk-core/
 !mu-plugins/dmup-config.php
+!mu-plugins/tsp-config.php
 
 #mu-plugins loaders
 !mu-plugins/loader*
