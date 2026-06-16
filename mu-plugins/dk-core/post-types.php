@@ -8,6 +8,7 @@ namespace DaveKellam\Core\PostTypes;
 add_action( 'init', __NAMESPACE__ . '\\albums' );
 add_action( 'init', __NAMESPACE__ . '\\books' );
 add_action( 'init', __NAMESPACE__ . '\\tweets' );
+add_action( 'init', __NAMESPACE__ . '\\changelog' );
 
 // enable excerpts for pages
 add_post_type_support( 'page', 'excerpt' );
@@ -57,6 +58,32 @@ function books() {
 		[
 			'singular' => 'Book',
 			'plural'   => 'Books',
+		]
+	);
+}
+
+/**
+ * Register the Changelog post type
+ */
+function changelog() {
+	if ( ! function_exists( 'register_extended_post_type' ) ) {
+		return;
+	}
+
+	register_extended_post_type(
+		'changelog',
+		[
+			'menu_icon'    => 'dashicons-editor-ul',
+			'supports'     => [ 'title', 'editor' ],
+			'public'       => false,
+			'show_ui'      => true,
+			'show_in_rest' => true,
+			'block_editor' => false,
+			'has_archive'  => false,
+		],
+		[
+			'singular' => 'Entry',
+			'plural'   => 'Entries',
 		]
 	);
 }
