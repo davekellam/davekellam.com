@@ -40,13 +40,13 @@ get_header();
 					<?php if ( '' !== $current_month ) : ?>
 						</ul>
 					<?php endif; ?>
-					<h2 class="changelog-month"><?php echo esc_html( $month ); ?></h2>
+					<h3><?php echo esc_html( $month ); ?></h3>
 					<ul class="changelog-list">
 					<?php $current_month = $month; ?>
 				<?php endif; ?>
 
 				<li class="changelog-entry">
-					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+					<?php echo esc_html( get_the_date( 'm.d' ) ); ?> - <?php the_content(); ?>
 				</li>
 
 			<?php endwhile; ?>
