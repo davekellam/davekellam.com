@@ -167,3 +167,31 @@ button:hover {
 	color: var(--wp--preset--color--muted, #999);
 	font-size: var(--wp--preset--font-size--small, 0.8rem);
 }
+
+/* Changelog */
+.changelog-month {
+	font-size: var(--wp--preset--font-size--medium, 1.125rem);
+	margin-block: var(--wp--preset--spacing--5, 2rem) var(--wp--preset--spacing--3, 1rem);
+}
+
+.changelog-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.changelog-entry {
+	padding-block: 0.25rem;
+}
+
+.changelog-entry a {
+	color: var(--wp--preset--color--text, #404040);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: var(--wp--preset--color--muted, #999);
+}
+
+.changelog-entry a:hover {
+	color: var(--wp--preset--color--link, royalblue);
+	text-decoration-color: var(--wp--preset--color--link, royalblue);
+}
