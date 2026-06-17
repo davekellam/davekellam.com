@@ -9,12 +9,10 @@ get_header();
 ?>
 
 <main class="site-main" id="main">
-
-	<header class="page-header">
-		<h1 class="page-title"><?php esc_html_e( 'Changelog', 'quarter' ); ?></h1>
-	</header>
-
-	<div class="entry-list">
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?>>
+		<header class="entry-header">
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+		</header>
 
 		<?php
 		$changelog_query = new WP_Query(
@@ -33,20 +31,20 @@ get_header();
 			$current_month = '';
 			while ( $changelog_query->have_posts() ) :
 				$changelog_query->the_post();
-				$month = get_the_date( 'F Y' );
+				$month = get_the_date( 'F' );
 				?>
 
 				<?php if ( $month !== $current_month ) : ?>
 					<?php if ( '' !== $current_month ) : ?>
 						</ul>
 					<?php endif; ?>
-					<h3><?php echo esc_html( $month ); ?></h3>
-					<ul class="changelog-list">
+					<h2 class="wp-block-heading"><?php echo esc_html( $month ); ?></h2>
+					<ul class="wp-block-list">
 					<?php $current_month = $month; ?>
 				<?php endif; ?>
 
-				<li class="changelog-entry">
-					<?php echo esc_html( get_the_date( 'm.d' ) ); ?> - <?php the_content(); ?>
+				<li>
+					<?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> - <?php echo esc_html( get_the_content() ); ?>
 				</li>
 
 			<?php endwhile; ?>
@@ -64,7 +62,7 @@ get_header();
 			<?php the_content(); ?>
 		</div>
 
-	</div>
+	</article>
 </main>
 
 <?php
