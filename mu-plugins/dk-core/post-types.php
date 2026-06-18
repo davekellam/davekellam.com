@@ -74,6 +74,9 @@ function changelog() {
 		'changelog',
 		[
 			'menu_icon'    => 'dashicons-editor-ul',
+			'labels'       => [
+				'menu_name' => 'Changelog',
+			],
 			'supports'     => [ 'title', 'editor' ],
 			'public'       => false,
 			'show_ui'      => true,
