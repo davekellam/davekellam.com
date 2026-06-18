@@ -18,6 +18,7 @@ remove_action( 'wp_head', 'rsd_link' );
 
 // Changes to the admin area
 add_action( 'admin_init', __NAMESPACE__ . '\\customize_admin' );
+add_action( 'admin_menu', __NAMESPACE__ . '\\hide_comments_menu_badge', 999 );
 
 // Modify default queries
 add_action( 'pre_get_posts', __NAMESPACE__ . '\\query_modification' );
@@ -41,6 +42,35 @@ function customize_admin() {
 
 	// Prevent default custom fields box from being available
 	remove_meta_box( 'postcustom', 'post', 'normal' );
+}
+
+/**
+ * Remove only the comments count badge from the admin sidebar menu item.
+ */
+function hide_comments_menu_badge() {
+	global $menu;
+
+	if ( empty( $menu ) || ! is_array( $menu ) ) {
+		return;
+	}
+
+	foreach ( $menu as $index => $item ) {
+		if ( ! isset( $item[2], $item[0] ) ) {
+			continue;
+		}
+
+		if ( 'edit-comments.php' !== $item[2] ) {
+			continue;
+		}
+
+		$menu[ $index ][0] = preg_replace(
+			'/\s*<span class="awaiting-mod[^>]*>.*?<\/span>\s*/',
+			'',
+			$item[0]
+		);
+
+		break;
+	}
 }
 
 /**
