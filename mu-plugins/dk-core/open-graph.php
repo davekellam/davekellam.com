@@ -80,6 +80,7 @@ function add_indieweb_tags() {
 	<link rel="me" href="https://davekellam.tumblr.com/" />
 	<link rel="me" href="https://flickr.com/photos/davekellam" />
 	<link rel="me" href="https://www.last.fm/user/eightface" />
+	<link rel="me" href="https://sifa.id/p/davekellam.com">
 
 	<?php
 }
