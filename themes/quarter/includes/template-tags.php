@@ -21,20 +21,22 @@ function quarter_post_date(): void {
  * Output an entry footer with tags and categories.
  */
 function quarter_entry_footer(): void {
-	$tags = get_the_tag_list( '', ', ' );
+	$tags = get_the_tag_list( '/ ', ' / ' );
+
+	$time_string = sprintf(
+		'<time class="entry-date published updated" datetime="%1$s">%2$s</time>',
+		esc_attr( get_the_date( 'Y/m/d \a\t g:ia' ) ),
+		esc_html( get_the_date( 'Y/m/d \a\t g:ia' ) ),
+	);
+
+	echo '<footer class="entry-footer">';
+	echo '<span class="posted-on">Posted ' . $time_string . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	if ( $tags ) {
-		echo '<footer class="entry-footer">';
-
-		if ( $tags ) {
-			printf(
-				'<span class="entry-tags">%1$s %2$s</span>',
-				esc_html__( 'Tags:', 'quarter' ),
-				$tags // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			);
-		}
-		echo '</footer>';
+		echo '<span class="entry-tags">' . $tags . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
+
+	echo '</footer>';
 }
 
 /**
