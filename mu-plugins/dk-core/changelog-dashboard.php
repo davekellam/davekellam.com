@@ -9,6 +9,11 @@ add_action( 'wp_dashboard_setup', __NAMESPACE__ . '\\register_widget' );
 add_action( 'admin_post_changelog_quick_add', __NAMESPACE__ . '\\handle_submission' );
 add_action( 'admin_notices', __NAMESPACE__ . '\\admin_notice' );
 
+/**
+ * Register changelog quickpost widget
+ *
+ * @return void
+ */
 function register_widget(): void {
 	wp_add_dashboard_widget(
 		'changelog_quick_add',
@@ -17,6 +22,11 @@ function register_widget(): void {
 	);
 }
 
+/**
+ * Render function of changelog widget
+ *
+ * @return void
+ */
 function render_widget(): void {
 	?>
 	<form name="changelog-quick-add" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -37,6 +47,11 @@ function render_widget(): void {
 	<?php
 }
 
+/**
+ * Handle submission of changelog quickpost
+ *
+ * @return void
+ */
 function handle_submission(): void {
 	if ( ! isset( $_POST['changelog_nonce'] ) || ! wp_verify_nonce( $_POST['changelog_nonce'], 'changelog_quick_add' ) ) {
 		wp_die( esc_html__( 'Invalid nonce.', 'quarter' ) );
@@ -77,8 +92,13 @@ function handle_submission(): void {
 	exit;
 }
 
+/**
+ * Display admin notice for successful changelog entry addition
+ *
+ * @return void
+ */
 function admin_notice(): void {
-	if ( ! isset( $_GET['changelog_added'] ) || '1' !== $_GET['changelog_added'] ) {
+	if ( ! isset( $_GET['changelog_added'] ) || '1' !== $_GET['changelog_added'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return;
 	}
 

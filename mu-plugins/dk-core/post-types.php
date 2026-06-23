@@ -92,7 +92,7 @@ function changelog() {
 }
 
 /**
- * 
+ * Register the Tweet post type
  *
  * @return void
  */
@@ -103,7 +103,7 @@ function tweets() {
 	}
 
 	register_extended_post_type(
-		'birdsite_tweet',
+		'birdsite_tweet', // original post type name
 		[
 			'menu_icon'    => 'dashicons-megaphone',
 			'supports'     => [ 'title', 'editor' ],
@@ -112,7 +112,7 @@ function tweets() {
 			'show_in_rest' => true,
 			'block_editor' => false,
 			'rewrite'      => [
-				'permastruct'       => 'tweets/%year%/%monthnum%/%birdsite_tweet%/',
+				'permastruct' => 'tweets/%year%/%monthnum%/%birdsite_tweet%/',
 			],
 		],
 		[

@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /**
  * Import Goodreads RSS data
  */
@@ -105,13 +106,13 @@ class Goodreads_Importer {
 	}
 
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
-		$title         = trim( (string) $item->title );
-		$content       = trim( (string) $item->book_description );
-		$read_at       = $this->parse_date( (string) $item->user_read_at );
-		$date_added    = $this->parse_date( (string) $item->user_date_added );
+		$title          = trim( (string) $item->title );
+		$content        = trim( (string) $item->book_description );
+		$read_at        = $this->parse_date( (string) $item->user_read_at );
+		$date_added     = $this->parse_date( (string) $item->user_date_added );
 		$effective_date = $read_at ?: $date_added;
-		$post_date     = $effective_date ? $effective_date->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
-		$post_date_gmt = $read_at ? get_gmt_from_date( $post_date ) : current_time( 'mysql', 1 );
+		$post_date      = $effective_date ? $effective_date->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
+		$post_date_gmt  = $read_at ? get_gmt_from_date( $post_date ) : current_time( 'mysql', 1 );
 
 		return [
 			'post_type'         => 'book',

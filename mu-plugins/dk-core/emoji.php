@@ -17,7 +17,7 @@ add_filter( 'emoji_svg_url', '__return_false' ); // Removes the emoji CDN URL, i
 
 // Ensure any registered emoji styles (and their inline CSS) are dequeued/deregistered late.
 add_action( 'wp_print_styles', __NAMESPACE__ . '\\dequeue_emoji_styles', 100 );
-// add_action( 'admin_print_styles', __NAMESPACE__ . '\\dequeue_emoji_styles', 100 );
+add_action( 'admin_print_styles', __NAMESPACE__ . '\\dequeue_emoji_styles', 100 );
 
 
 /**

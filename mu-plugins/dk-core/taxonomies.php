@@ -9,6 +9,11 @@ namespace DaveKellam\Core\Taxonomies;
 
 add_action( 'init', __NAMESPACE__ . '\\register_taxonomies' );
 
+/**
+ * Register custom taxonomies
+ *
+ * @return void
+ */
 function register_taxonomies() {
 	register_taxonomy(
 		'birdsite_hashtags',

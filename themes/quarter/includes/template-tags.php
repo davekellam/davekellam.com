@@ -21,7 +21,7 @@ function quarter_post_date(): void {
  * Output an entry footer with tags and categories.
  */
 function quarter_entry_footer(): void {
-	$tags       = get_the_tag_list( '', ', ' );
+	$tags = get_the_tag_list( '', ', ' );
 
 	if ( $tags ) {
 		echo '<footer class="entry-footer">';
@@ -55,4 +55,3 @@ function quarter_pagination(): void {
 		echo '</nav>';
 	}
 }
-

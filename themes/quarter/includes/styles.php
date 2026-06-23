@@ -30,7 +30,7 @@ function enqueue_styles(): void {
 
 /**
  * Add a stylesheet to customize the appearance of the editor
- * 
+ *
  * @todo Consider using enqueue_block_editor_assets instead of add_editor_styles or different approach
  */
 function add_editor_styles() {
