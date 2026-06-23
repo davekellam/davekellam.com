@@ -22,17 +22,10 @@ function quarter_post_date(): void {
  */
 function quarter_entry_footer(): void {
 	$tags       = get_the_tag_list( '', ', ' );
-	$categories = get_the_category_list( ', ' );
 
-	if ( $tags || $categories ) {
+	if ( $tags ) {
 		echo '<footer class="entry-footer">';
-		if ( $categories ) {
-			printf(
-				'<span class="entry-categories">%1$s %2$s</span>',
-				esc_html__( 'In:', 'quarter' ),
-				$categories // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			);
-		}
+
 		if ( $tags ) {
 			printf(
 				'<span class="entry-tags">%1$s %2$s</span>',
