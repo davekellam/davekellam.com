@@ -31,8 +31,6 @@ the_post();
 		<?php quarter_entry_footer(); ?>
 	</article>
 
-	<?php quarter_post_navigation(); ?>
-
 	<?php
 	if ( comments_open() || get_comments_number() ) {
 		comments_template();

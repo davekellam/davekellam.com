@@ -63,14 +63,3 @@ function quarter_pagination(): void {
 	}
 }
 
-/**
- * Output post navigation links for single posts.
- */
-function quarter_post_navigation(): void {
-	the_post_navigation(
-		[
-			'prev_text' => '<span class="nav-label">' . esc_html__( 'Previous', 'quarter' ) . '</span> <span class="nav-title">%title</span>',
-			'next_text' => '<span class="nav-label">' . esc_html__( 'Next', 'quarter' ) . '</span> <span class="nav-title">%title</span>',
-		]
-	);
-}
