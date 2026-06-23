@@ -16,13 +16,7 @@ the_post();
 			<div class="entry-meta">
 				<?php quarter_post_date(); ?>
 			</div>
-		</header>
-
-		<?php if ( has_post_thumbnail() ) : ?>
-			<figure class="entry-thumbnail">
-				<?php the_post_thumbnail( 'large' ); ?>
-			</figure>
-		<?php endif; ?>
+		</header>	
 
 		<div class="entry-content">
 			<?php the_content(); ?>
