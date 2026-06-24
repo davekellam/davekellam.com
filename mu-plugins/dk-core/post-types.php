@@ -9,6 +9,7 @@ add_action( 'init', __NAMESPACE__ . '\\albums' );
 add_action( 'init', __NAMESPACE__ . '\\books' );
 add_action( 'init', __NAMESPACE__ . '\\tweets' );
 add_action( 'init', __NAMESPACE__ . '\\changelog' );
+add_action( 'init', __NAMESPACE__ . '\\videos' );
 
 // enable excerpts for pages
 add_post_type_support( 'page', 'excerpt' );
@@ -103,6 +104,31 @@ function changelog() {
 		[
 			'singular' => 'Entry',
 			'plural'   => 'Entries',
+		]
+	);
+}
+
+/**
+ * Register the Video post type
+ */
+function videos() {
+	if ( ! function_exists( 'register_extended_post_type' ) ) {
+		return;
+	}
+
+	register_extended_post_type(
+		'video',
+		[
+			'menu_icon'    => 'dashicons-video-alt3',
+			'supports'     => [ 'title', 'editor', 'thumbnail' ],
+			'public'       => true,
+			'show_ui'      => true,
+			'show_in_rest' => true,
+			'has_archive'  => true,
+		],
+		[
+			'singular' => 'Video',
+			'plural'   => 'Videos',
 		]
 	);
 }
