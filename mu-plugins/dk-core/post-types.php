@@ -11,9 +11,6 @@ add_action( 'init', __NAMESPACE__ . '\\tweets' );
 add_action( 'init', __NAMESPACE__ . '\\changelog' );
 add_action( 'init', __NAMESPACE__ . '\\videos' );
 
-// enable excerpts for pages
-add_post_type_support( 'page', 'excerpt' );
-
 /**
  * Register the News post type
  */
