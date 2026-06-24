@@ -54,6 +54,22 @@ function books() {
 			'public'       => false,
 			'show_ui'      => true,
 			'block_editor' => false,
+			'admin_cols'   => array(
+				// A featured image column:
+				'featured_image' => array(
+					'title'          => 'Cover',
+					'featured_image' => 'thumbnail',
+					'width'          => 80,
+				),
+				'title',
+				// A meta field column:
+				'read'           => array(
+					'title'       => 'Read',
+					'meta_key'    => 'book_read_date',
+					'date_format' => 'Y-m-d',
+					'default'     => 'DESC',
+				),
+			),
 		],
 		[
 			'singular' => 'Book',
