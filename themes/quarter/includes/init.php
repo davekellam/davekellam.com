@@ -8,6 +8,7 @@
 namespace Quarter\Theme\Init;
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\theme_setup' );
+add_filter( 'get_the_archive_title_prefix', '__return_false' );
 
 /**
  * Sets up theme defaults and registers WordPress feature support.
