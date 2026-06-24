@@ -44,9 +44,6 @@ the_post();
 						<div class="entry-meta">
 							<?php quarter_post_date(); ?>
 						</div>
-						<div class="entry-summary">
-							<?php the_excerpt(); ?>
-						</div>
 					</article>
 
 				<?php endwhile; ?>
