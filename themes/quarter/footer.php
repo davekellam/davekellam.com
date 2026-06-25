@@ -20,7 +20,7 @@
 		</nav>
 
 		<small class="site-copyright">
-			&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+			&copy; 1998&ndash;<?php echo esc_html( gmdate( 'Y' ) ); ?>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 		</small>
 	</div>
