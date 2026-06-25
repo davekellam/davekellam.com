@@ -97,6 +97,19 @@ function changelog() {
 			'show_in_rest' => true,
 			'block_editor' => false,
 			'has_archive'  => false,
+			'admin_cols'   => [
+				'title',
+				'the_content' => array(
+					'title'      => 'Content',
+					'post_field' => 'post_content',
+				),
+				'published'   => array(
+					'title'       => 'Published',
+					'post_field'  => 'post_date',
+					'date_format' => 'Y.m.d',
+					'default'     => 'DESC',
+				),
+			],
 		],
 		[
 			'singular' => 'Entry',
