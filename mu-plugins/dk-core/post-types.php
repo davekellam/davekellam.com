@@ -65,7 +65,11 @@ function books() {
 					'title'       => 'Read',
 					'meta_key'    => 'book_read_date',
 					'date_format' => 'Y-m-d',
-					'default'     => 'DESC',
+				),
+				'post_date'      => array(
+					'title'      => 'Added',
+					'post_field' => 'post_date',
+					'default'    => 'DESC',
 				),
 			),
 		],
