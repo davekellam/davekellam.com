@@ -45,10 +45,20 @@ class Goodreads_Importer {
 		}
 
 		$created = 0;
-		$skipped = 0;
+		$updated = 0;
 		$total   = 0;
+		$skipped = 0;
 
+		// Process only the 10 most recent items
+		$items_array = [];
 		foreach ( $xml->channel->item as $item ) {
+			$items_array[] = $item;
+		}
+
+		// Process only the 10 most recent items
+		$items = array_slice( $items_array, 0, 10 );
+
+		foreach ( $items as $item ) {
 			++$total;
 			$post_data = $this->build_post_data( $item, $author_id );
 			if ( empty( $post_data['post_title'] ) ) {
@@ -56,17 +66,29 @@ class Goodreads_Importer {
 				continue;
 			}
 
-			// Check for duplicates by title and author
-			if ( $this->book_exists( $post_data['post_title'], $post_data['post_author'] ) ) {
-				++$skipped;
-				continue;
-			}
+			// Check for existing book by title and author
+			$existing_id = $this->get_existing_book_id( $post_data['post_title'], $author_id );
 
-			$post_id = wp_insert_post( $post_data, true );
+			if ( $existing_id ) {
+				// Update existing post
+				$post_data['ID'] = $existing_id;
+				$result = wp_update_post( $post_data, true );
 
-			if ( is_wp_error( $post_id ) ) {
-				++$skipped;
-				continue;
+				if ( is_wp_error( $result ) ) {
+					continue;
+				}
+
+				$post_id = $existing_id;
+				++$updated;
+			} else {
+				// Create new post
+				$post_id = wp_insert_post( $post_data, true );
+
+				if ( is_wp_error( $post_id ) ) {
+					continue;
+				}
+
+				++$created;
 			}
 
 			$this->update_meta( $post_id, $item );
@@ -74,35 +96,35 @@ class Goodreads_Importer {
 			if ( ! $skip_covers ) {
 				$this->maybe_set_cover( $post_id, $item );
 			}
-
-			++$created;
 		}
 
 		return [
 			'created' => $created,
+			'updated' => $updated,
 			'skipped' => $skipped,
 			'total'   => $total,
 		];
 	}
 
-	private function book_exists( string $title, int $author_id ): bool {
+	private function get_existing_book_id( string $title, int $author_id ): ?int {
 		$existing = get_posts(
 			[
 				'post_type'      => 'book',
 				'post_status'    => 'any',
 				'posts_per_page' => 1000,
 				'fields'         => 'ids',
+				'post_author'    => $author_id,
 			]
 		);
 
-		// Double-check exact title match
+		// Find exact title match
 		foreach ( $existing as $post_id ) {
 			if ( $title === get_the_title( $post_id ) ) {
-				return true;
+				return $post_id;
 			}
 		}
 
-		return false;
+		return null;
 	}
 
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
@@ -113,11 +135,15 @@ class Goodreads_Importer {
 		$effective_date = $read_at ?: $date_added;
 		$post_date      = $effective_date ? $effective_date->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
 		$post_date_gmt  = $read_at ? get_gmt_from_date( $post_date ) : current_time( 'mysql', 1 );
+		
+		// Set to draft if book hasn't been read (no read_at date)
+		$post_status = $read_at ? 'publish' : 'draft';
 
 		return [
 			'post_type'         => 'book',
-			'post_status'       => 'publish',
+			'post_status'       => $post_status,
 			'post_title'        => $title,
+			'post_name'         => sanitize_title( $title ),
 			'post_content'      => $content !== '' ? wp_kses_post( $content ) : '',
 			'post_author'       => $author_id,
 			'post_date'         => $post_date,
@@ -150,7 +176,7 @@ class Goodreads_Importer {
 		$this->update_meta_value( $post_id, 'book_read_date', $read_at ? $read_at->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_date_added', $date_added ? $date_added->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_published_year', $published_year );
-		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );
+		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );		
 		$this->update_meta_value( $post_id, 'book_cover_url', $cover_url );
 	}
 
@@ -381,6 +407,7 @@ function render_admin_page(): void {
 					<th scope="row">Last Import Stats</th>
 					<td>
 						Created: <strong><?php echo absint( $last_count['created'] ?? 0 ); ?></strong>,
+					Updated: <strong><?php echo absint( $last_count['updated'] ?? 0 ); ?></strong>,
 						Skipped: <strong><?php echo absint( $last_count['skipped'] ?? 0 ); ?></strong>,
 						Total: <strong><?php echo absint( $last_count['total'] ?? 0 ); ?></strong>
 					</td>
