@@ -441,8 +441,6 @@ function render_admin_page(): void {
 		wp_die( 'Unauthorized' );
 	}
 
-	$feed_url   = get_option( 'goodreads_feed_url' );
-	$interval   = get_option( 'goodreads_sync_interval', 'daily' );
 	$last_sync  = get_option( 'goodreads_last_sync', 0 );
 	$last_count = get_option( 'goodreads_last_sync_count', [] );
 	$sync_error = get_option( 'goodreads_sync_error', '' );
