@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 /**
  * Import Goodreads RSS data
  */
@@ -17,7 +16,19 @@ add_action( 'goodreads_sync_event', __NAMESPACE__ . '\\run_scheduled_sync' );
 // Schedule cron on plugin load (mu-plugin always active)
 schedule_cron();
 
+/**
+ * Goodreads RSS importer class.
+ */
 class Goodreads_Importer {
+	/**
+	 * Import books from a Goodreads RSS feed URL.
+	 *
+	 * @param string $url The Goodreads RSS feed URL.
+	 * @param int    $author_id The WordPress user ID to assign posts to.
+	 * @param bool   $skip_covers Whether to skip downloading cover images.
+	 *
+	 * @return array|WP_Error Array with 'created', 'updated', 'skipped', 'total' counts, or error.
+	 */
 	public function import_from_url( string $url, int $author_id, bool $skip_covers ) {
 		if ( ! post_type_exists( 'book' ) ) {
 			return new WP_Error( 'goodreads_import_missing_post_type', 'Post type "book" is not registered.' );
@@ -66,13 +77,14 @@ class Goodreads_Importer {
 				continue;
 			}
 
-			// Check for existing book by title and author
-			$existing_id = $this->get_existing_book_id( $post_data['post_title'], $author_id );
+			// Check for existing book by Goodreads review URL
+			$review_url  = trim( (string) $item->link );
+			$existing_id = $this->get_existing_book_id( $review_url );
 
 			if ( $existing_id ) {
 				// Update existing post
 				$post_data['ID'] = $existing_id;
-				$result = wp_update_post( $post_data, true );
+				$result          = wp_update_post( $post_data, true );
 
 				if ( is_wp_error( $result ) ) {
 					continue;
@@ -106,27 +118,35 @@ class Goodreads_Importer {
 		];
 	}
 
-	private function get_existing_book_id( string $title, int $author_id ): ?int {
-		$existing = get_posts(
-			[
-				'post_type'      => 'book',
-				'post_status'    => 'any',
-				'posts_per_page' => 1000,
-				'fields'         => 'ids',
-				'post_author'    => $author_id,
-			]
+	/**
+	 * Find existing book by Goodreads review URL.
+	 *
+	 * @param string $review_url The Goodreads review URL.
+	 *
+	 * @return int|null The post ID if found, null otherwise.
+	 */
+	private function get_existing_book_id( string $review_url ): ?int {
+		global $wpdb;
+
+		$post_id = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %s LIMIT 1",
+				'book_review_url',
+				$review_url
+			)
 		);
 
-		// Find exact title match
-		foreach ( $existing as $post_id ) {
-			if ( $title === get_the_title( $post_id ) ) {
-				return $post_id;
-			}
-		}
-
-		return null;
+		return $post_id ? (int) $post_id : null;
 	}
 
+	/**
+	 * Build post data array from RSS item.
+	 *
+	 * @param \SimpleXMLElement $item The RSS item element.
+	 * @param int               $author_id The WordPress user ID.
+	 *
+	 * @return array Post data for insertion or update.
+	 */
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
 		$title          = trim( (string) $item->title );
 		$content        = trim( (string) $item->book_description );
@@ -135,7 +155,7 @@ class Goodreads_Importer {
 		$effective_date = $read_at ?: $date_added;
 		$post_date      = $effective_date ? $effective_date->format( 'Y-m-d H:i:s' ) : current_time( 'mysql' );
 		$post_date_gmt  = $read_at ? get_gmt_from_date( $post_date ) : current_time( 'mysql', 1 );
-		
+
 		// Set to draft if book hasn't been read (no read_at date)
 		$post_status = $read_at ? 'publish' : 'draft';
 
@@ -153,6 +173,12 @@ class Goodreads_Importer {
 		];
 	}
 
+	/**
+	 * Update post meta from RSS item data.
+	 *
+	 * @param int               $post_id The post ID.
+	 * @param \SimpleXMLElement $item The RSS item element.
+	 */
 	private function update_meta( int $post_id, \SimpleXMLElement $item ): void {
 		$review_url     = trim( (string) $item->link );
 		$author_name    = trim( (string) $item->author_name );
@@ -176,10 +202,17 @@ class Goodreads_Importer {
 		$this->update_meta_value( $post_id, 'book_read_date', $read_at ? $read_at->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_date_added', $date_added ? $date_added->format( 'Y-m-d' ) : '' );
 		$this->update_meta_value( $post_id, 'book_published_year', $published_year );
-		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );		
+		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );
 		$this->update_meta_value( $post_id, 'book_cover_url', $cover_url );
 	}
 
+	/**
+	 * Update or delete post meta value.
+	 *
+	 * @param int    $post_id The post ID.
+	 * @param string $meta_key The meta key.
+	 * @param mixed  $value The meta value (deleted if empty).
+	 */
 	private function update_meta_value( int $post_id, string $meta_key, $value ): void {
 		if ( $value === '' || $value === null ) {
 			delete_post_meta( $post_id, $meta_key );
@@ -189,6 +222,13 @@ class Goodreads_Importer {
 		update_post_meta( $post_id, $meta_key, $value );
 	}
 
+	/**
+	 * Select the best cover image URL from multiple options.
+	 *
+	 * @param \SimpleXMLElement $item The RSS item element.
+	 *
+	 * @return string The cover URL or empty string.
+	 */
 	private function pick_cover_url( \SimpleXMLElement $item ): string {
 		$preferred = [
 			'book_large_image_url',
@@ -209,6 +249,12 @@ class Goodreads_Importer {
 		return '';
 	}
 
+	/**
+	 * Download and set cover image as featured image if not already set.
+	 *
+	 * @param int               $post_id The post ID.
+	 * @param \SimpleXMLElement $item The RSS item element.
+	 */
 	private function maybe_set_cover( int $post_id, \SimpleXMLElement $item ): void {
 		$cover_url = $this->pick_cover_url( $item );
 		if ( $cover_url === '' ) {
@@ -225,6 +271,14 @@ class Goodreads_Importer {
 		}
 	}
 
+	/**
+	 * Download and sideload an image from URL to media library.
+	 *
+	 * @param string $url The image URL.
+	 * @param int    $post_id The post ID.
+	 *
+	 * @return int The attachment ID or 0 on failure.
+	 */
 	private function sideload_image( string $url, int $post_id ): int {
 		if ( ! function_exists( 'media_handle_sideload' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -252,6 +306,13 @@ class Goodreads_Importer {
 		return (int) $attachment_id;
 	}
 
+	/**
+	 * Parse date string to DateTime object.
+	 *
+	 * @param string $value The date string to parse.
+	 *
+	 * @return DateTime|null DateTime object or null if parsing fails.
+	 */
 	private function parse_date( string $value ): ?DateTime {
 		$value = trim( $value );
 		if ( $value === '' ) {
@@ -270,7 +331,7 @@ class Goodreads_Importer {
 }
 
 /**
- * Register admin menu page
+ * Register the admin menu page for Goodreads settings.
  */
 function register_admin_page(): void {
 	add_management_page(
@@ -283,7 +344,7 @@ function register_admin_page(): void {
 }
 
 /**
- * Register settings
+ * Register settings fields and sections for Goodreads importer.
  */
 function register_settings(): void {
 	register_setting(
@@ -368,14 +429,12 @@ function register_settings(): void {
 		'goodreads_importer_section'
 	);
 
-	// Reschedule cron when settings are saved
-	if ( isset( $_POST['option_page'] ) && $_POST['option_page'] === 'goodreads_importer' ) {
-		add_action( 'update_option_goodreads_sync_interval', __NAMESPACE__ . '\\reschedule_cron' );
-	}
+	// Reschedule cron when sync interval setting is updated
+	add_action( 'update_option_goodreads_sync_interval', __NAMESPACE__ . '\\reschedule_cron' );
 }
 
 /**
- * Render admin page
+ * Render the Goodreads importer admin page.
  */
 function render_admin_page(): void {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -445,16 +504,25 @@ function render_admin_page(): void {
 	<?php
 }
 
+/**
+ * Render settings section description.
+ */
 function render_settings_section(): void {
 	echo '<p>Configure your Goodreads RSS feed and sync settings.</p>';
 }
 
+/**
+ * Render feed URL input field.
+ */
 function render_feed_url_field(): void {
 	$url = get_option( 'goodreads_feed_url' );
 	echo '<input type="url" name="goodreads_feed_url" value="' . esc_attr( $url ) . '" class="goodreads-input" placeholder="https://www.goodreads.com/review/list_rss/12345" />';
 	echo '<p class="description">Your Goodreads RSS feed URL (found in account settings)</p>';
 }
 
+/**
+ * Render sync interval select field.
+ */
 function render_sync_interval_field(): void {
 	$interval = get_option( 'goodreads_sync_interval', 'daily' );
 	?>
@@ -467,12 +535,18 @@ function render_sync_interval_field(): void {
 	<?php
 }
 
+/**
+ * Render author ID input field.
+ */
 function render_author_id_field(): void {
 	$author_id = get_option( 'goodreads_author_id', 1 );
 	echo '<input type="number" name="goodreads_author_id" value="' . absint( $author_id ) . '" min="1" style="width: 100px;" />';
 	echo '<p class="description">WordPress user ID to assign imported books to</p>';
 }
 
+/**
+ * Render skip covers checkbox field.
+ */
 function render_skip_covers_field(): void {
 	$skip = get_option( 'goodreads_skip_covers', false );
 	echo '<input type="checkbox" name="goodreads_skip_covers" value="1" ' . checked( $skip, true, false ) . ' />';
@@ -480,11 +554,11 @@ function render_skip_covers_field(): void {
 }
 
 /**
- * Run scheduled sync
+ * Run the scheduled sync from configured RSS feed.
  */
 function run_scheduled_sync(): void {
-	$url       = get_option( 'goodreads_feed_url' );
-	$author_id = get_option( 'goodreads_author_id', 1 );
+	$url         = get_option( 'goodreads_feed_url' );
+	$author_id   = get_option( 'goodreads_author_id', 1 );
 	$skip_covers = get_option( 'goodreads_skip_covers', false );
 
 	if ( empty( $url ) ) {
@@ -507,18 +581,18 @@ function run_scheduled_sync(): void {
 }
 
 /**
- * Schedule cron events
+ * Schedule the cron event if not already scheduled.
  */
 function schedule_cron(): void {
 	if ( ! wp_next_scheduled( 'goodreads_sync_event' ) ) {
-		$interval = get_option( 'goodreads_sync_interval', 'daily' );
+		$interval   = get_option( 'goodreads_sync_interval', 'daily' );
 		$recurrence = in_array( $interval, [ 'daily', 'weekly', 'monthly' ], true ) ? $interval : 'daily';
 		wp_schedule_event( time(), $recurrence, 'goodreads_sync_event' );
 	}
 }
 
 /**
- * Reschedule cron based on interval setting
+ * Reschedule cron event based on current interval setting.
  */
 function reschedule_cron(): void {
 	$interval = get_option( 'goodreads_sync_interval', 'daily' );
@@ -535,9 +609,16 @@ function reschedule_cron(): void {
 }
 
 /**
- * Settings helper class
+ * Settings helper class for Goodreads importer.
  */
 class Goodreads_Settings {
+	/**
+	 * Sanitize sync interval value.
+	 *
+	 * @param mixed $value The interval value to sanitize.
+	 *
+	 * @return string Sanitized interval value.
+	 */
 	public static function sanitize_interval( $value ): string {
 		$allowed = [ 'daily', 'weekly', 'monthly' ];
 		return in_array( $value, $allowed, true ) ? $value : 'daily';
