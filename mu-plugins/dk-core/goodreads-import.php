@@ -7,20 +7,18 @@
 namespace DaveKellam\Core\GoodreadsImport;
 
 use DateTime;
-use WP_CLI;
 use WP_Error;
 
-if ( defined( 'WP_CLI' ) && WP_CLI ) {
-	WP_CLI::add_command( 'goodreads', __NAMESPACE__ . '\\Goodreads_Command' );
-}
+// Initialize settings and admin page
+add_action( 'admin_menu', __NAMESPACE__ . '\\register_admin_page' );
+add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
+add_action( 'goodreads_sync_event', __NAMESPACE__ . '\\run_scheduled_sync' );
+
+// Schedule cron on plugin load (mu-plugin always active)
+schedule_cron();
 
 class Goodreads_Importer {
-	public function import_file( string $path, int $author_id, bool $skip_covers ) {
-		$real_path = realpath( $path );
-		if ( ! $real_path || ! is_readable( $real_path ) ) {
-			return new WP_Error( 'goodreads_import_missing_file', 'File not found or not readable.' );
-		}
-
+	public function import_from_url( string $url, int $author_id, bool $skip_covers ) {
 		if ( ! post_type_exists( 'book' ) ) {
 			return new WP_Error( 'goodreads_import_missing_post_type', 'Post type "book" is not registered.' );
 		}
@@ -29,10 +27,21 @@ class Goodreads_Importer {
 			return new WP_Error( 'goodreads_import_invalid_author', 'Invalid author ID.' );
 		}
 
+		// Fetch the RSS feed
+		$response = wp_remote_get( $url, [ 'timeout' => 15 ] );
+		if ( is_wp_error( $response ) ) {
+			return new WP_Error( 'goodreads_import_fetch_error', 'Failed to fetch RSS feed: ' . $response->get_error_message() );
+		}
+
+		$body = wp_remote_retrieve_body( $response );
+		if ( empty( $body ) ) {
+			return new WP_Error( 'goodreads_import_empty_response', 'RSS feed returned empty response.' );
+		}
+
 		libxml_use_internal_errors( true );
-		$xml = simplexml_load_file( $real_path );
+		$xml = simplexml_load_string( $body );
 		if ( ! $xml || ! isset( $xml->channel->item ) ) {
-			return new WP_Error( 'goodreads_import_parse_error', 'Failed to parse XML or no items found.' );
+			return new WP_Error( 'goodreads_import_parse_error', 'Failed to parse RSS feed or no items found.' );
 		}
 
 		$created = 0;
@@ -43,6 +52,12 @@ class Goodreads_Importer {
 			++$total;
 			$post_data = $this->build_post_data( $item, $author_id );
 			if ( empty( $post_data['post_title'] ) ) {
+				++$skipped;
+				continue;
+			}
+
+			// Check for duplicates by title and author
+			if ( $this->book_exists( $post_data['post_title'], $post_data['post_author'] ) ) {
 				++$skipped;
 				continue;
 			}
@@ -70,39 +85,24 @@ class Goodreads_Importer {
 		];
 	}
 
-	public function delete_all_books(): array {
-		if ( ! post_type_exists( 'book' ) ) {
-			return [
-				'deleted' => 0,
-				'skipped' => 0,
-			];
-		}
-
-		$ids = get_posts(
+	private function book_exists( string $title, int $author_id ): bool {
+		$existing = get_posts(
 			[
 				'post_type'      => 'book',
 				'post_status'    => 'any',
-				'posts_per_page' => -1,
+				'posts_per_page' => 1000,
 				'fields'         => 'ids',
 			]
 		);
 
-		$deleted = 0;
-		$skipped = 0;
-
-		foreach ( $ids as $post_id ) {
-			$result = wp_delete_post( (int) $post_id, true );
-			if ( $result ) {
-				++$deleted;
-			} else {
-				++$skipped;
+		// Double-check exact title match
+		foreach ( $existing as $post_id ) {
+			if ( $title === get_the_title( $post_id ) ) {
+				return true;
 			}
 		}
 
-		return [
-			'deleted' => $deleted,
-			'skipped' => $skipped,
-		];
+		return false;
 	}
 
 	private function build_post_data( \SimpleXMLElement $item, int $author_id ): array {
@@ -244,67 +244,276 @@ class Goodreads_Importer {
 	}
 }
 
-class Goodreads_Command {
-	/**
-	 * Import a Goodreads RSS XML file into the book post type.
-	 *
-	 * ## OPTIONS
-	 *
-	 * <file>
-	 * : Path to the Goodreads RSS XML file
-	 *
-	 * [--file=<path>]
-	 * : Path to the Goodreads RSS XML file (alternative to positional)
-	 *
-	 * [--author=<id>]
-	 * : Author ID for imported posts (default: 1)
-	 *
-	 * [--skip-covers]
-	 * : Skip downloading cover images
-	 *
-	 * ## EXAMPLES
-	 *
-	 *     wp goodreads import /path/to/goodreads.xml --author=1
-	 *
-	 * @when after_wp_load
-	 */
-	public function import( array $args, array $assoc_args ): void {
-		$path        = $assoc_args['file'] ?? ( $args[0] ?? '' );
-		$author_id   = isset( $assoc_args['author'] ) ? (int) $assoc_args['author'] : 1;
-		$skip_covers = isset( $assoc_args['skip-covers'] );
+/**
+ * Register admin menu page
+ */
+function register_admin_page(): void {
+	add_management_page(
+		'Goodreads Importer',
+		'Goodreads',
+		'manage_options',
+		'goodreads-importer',
+		__NAMESPACE__ . '\\render_admin_page'
+	);
+}
 
-		if ( empty( $path ) ) {
-			WP_CLI::error( 'Missing --file argument.' );
-		}
+/**
+ * Register settings
+ */
+function register_settings(): void {
+	register_setting(
+		'goodreads_importer',
+		'goodreads_feed_url',
+		[
+			'type'              => 'string',
+			'sanitize_callback' => 'esc_url_raw',
+			'show_in_rest'      => false,
+		]
+	);
 
-		$importer = new Goodreads_Importer();
-		$result   = $importer->import_file( $path, $author_id, $skip_covers );
-		if ( is_wp_error( $result ) ) {
-			WP_CLI::error( $result->get_error_message() );
-		}
+	register_setting(
+		'goodreads_importer',
+		'goodreads_sync_interval',
+		[
+			'type'              => 'string',
+			'default'           => 'daily',
+			'sanitize_callback' => [ __NAMESPACE__ . '\\Goodreads_Settings', 'sanitize_interval' ],
+			'show_in_rest'      => false,
+		]
+	);
 
-		$created = $result['created'] ?? 0;
-		$skipped = $result['skipped'] ?? 0;
-		$total   = $result['total'] ?? 0;
+	register_setting(
+		'goodreads_importer',
+		'goodreads_author_id',
+		[
+			'type'              => 'integer',
+			'default'           => 1,
+			'sanitize_callback' => 'absint',
+			'show_in_rest'      => false,
+		]
+	);
 
-		WP_CLI::success( "Import complete. Total: {$total}, Created: {$created}, Skipped: {$skipped}." );
+	register_setting(
+		'goodreads_importer',
+		'goodreads_skip_covers',
+		[
+			'type'              => 'boolean',
+			'default'           => false,
+			'sanitize_callback' => fn( $value ) => (bool) $value,
+			'show_in_rest'      => false,
+		]
+	);
+
+	add_settings_section(
+		'goodreads_importer_section',
+		'Goodreads Importer Settings',
+		__NAMESPACE__ . '\\render_settings_section',
+		'goodreads_importer'
+	);
+
+	add_settings_field(
+		'goodreads_feed_url_field',
+		'Feed URL',
+		__NAMESPACE__ . '\\render_feed_url_field',
+		'goodreads_importer',
+		'goodreads_importer_section'
+	);
+
+	add_settings_field(
+		'goodreads_sync_interval_field',
+		'Sync Interval',
+		__NAMESPACE__ . '\\render_sync_interval_field',
+		'goodreads_importer',
+		'goodreads_importer_section'
+	);
+
+	add_settings_field(
+		'goodreads_author_id_field',
+		'Author ID',
+		__NAMESPACE__ . '\\render_author_id_field',
+		'goodreads_importer',
+		'goodreads_importer_section'
+	);
+
+	add_settings_field(
+		'goodreads_skip_covers_field',
+		'Skip Covers',
+		__NAMESPACE__ . '\\render_skip_covers_field',
+		'goodreads_importer',
+		'goodreads_importer_section'
+	);
+
+	// Reschedule cron when settings are saved
+	if ( isset( $_POST['option_page'] ) && $_POST['option_page'] === 'goodreads_importer' ) {
+		add_action( 'update_option_goodreads_sync_interval', __NAMESPACE__ . '\\reschedule_cron' );
+	}
+}
+
+/**
+ * Render admin page
+ */
+function render_admin_page(): void {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Unauthorized' );
 	}
 
-	/**
-	 * Delete all book posts.
-	 *
-	 * ## EXAMPLES
-	 *
-	 *     wp goodreads delete-all
-	 *
-	 * @when after_wp_load
-	 */
-	public function delete_all(): void {
-		$importer = new Goodreads_Importer();
-		$result   = $importer->delete_all_books();
-		$deleted  = $result['deleted'] ?? 0;
-		$skipped  = $result['skipped'] ?? 0;
+	$feed_url   = get_option( 'goodreads_feed_url' );
+	$interval   = get_option( 'goodreads_sync_interval', 'daily' );
+	$last_sync  = get_option( 'goodreads_last_sync', 0 );
+	$last_count = get_option( 'goodreads_last_sync_count', [] );
+	$sync_error = get_option( 'goodreads_sync_error', '' );
 
-		WP_CLI::success( "Deleted {$deleted} books. Skipped: {$skipped}." );
+	$last_sync_text = $last_sync ? wp_date( 'Y-m-d H:i:s', $last_sync ) : 'Never';
+	?>
+	<div class="wrap">
+		<h1>Goodreads Importer</h1>
+
+		<div style="max-width: 800px;">
+			<!-- Status Section -->
+			<div style="background: #f1f1f1; padding: 20px; margin-bottom: 30px; border-radius: 5px;">
+				<h2 style="margin-top: 0;">Status</h2>
+				<table class="form-table">
+					<tr>
+						<th scope="row">Last Sync</th>
+						<td><?php echo esc_html( $last_sync_text ); ?></td>
+					</tr>
+				<?php if ( ! empty( $last_count ) ) : ?>
+				<tr>
+					<th scope="row">Last Import Stats</th>
+					<td>
+						Created: <strong><?php echo absint( $last_count['created'] ?? 0 ); ?></strong>,
+						Skipped: <strong><?php echo absint( $last_count['skipped'] ?? 0 ); ?></strong>,
+						Total: <strong><?php echo absint( $last_count['total'] ?? 0 ); ?></strong>
+					</td>
+				</tr>
+				<?php endif; ?>
+				<?php if ( $sync_error ) : ?>
+				<tr>
+					<th scope="row">Last Error</th>
+					<td style="color: #dc3545;">
+						<code><?php echo esc_html( $sync_error ); ?></code>
+					</td>
+				</tr>
+				<?php endif; ?>
+			</table>
+		</div>
+
+		<!-- Settings Section -->
+		<form method="post" action="options.php" style="background: white; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+			<?php settings_fields( 'goodreads_importer' ); ?>
+			<?php do_settings_sections( 'goodreads_importer' ); ?>
+			<?php submit_button(); ?>
+		</form>
+	</div>
+</div>
+
+<style>
+	.goodreads-input {
+		width: 100%;
+		max-width: 500px;
+		padding: 8px;
+		border: 1px solid #ddd;
+		border-radius: 3px;
+	}
+</style>
+	<?php
+}
+
+function render_settings_section(): void {
+	echo '<p>Configure your Goodreads RSS feed and sync settings.</p>';
+}
+
+function render_feed_url_field(): void {
+	$url = get_option( 'goodreads_feed_url' );
+	echo '<input type="url" name="goodreads_feed_url" value="' . esc_attr( $url ) . '" class="goodreads-input" placeholder="https://www.goodreads.com/review/list_rss/12345" />';
+	echo '<p class="description">Your Goodreads RSS feed URL (found in account settings)</p>';
+}
+
+function render_sync_interval_field(): void {
+	$interval = get_option( 'goodreads_sync_interval', 'daily' );
+	?>
+	<select name="goodreads_sync_interval" id="goodreads_sync_interval">
+		<option value="daily" <?php selected( $interval, 'daily' ); ?>>Daily</option>
+		<option value="weekly" <?php selected( $interval, 'weekly' ); ?>>Weekly</option>
+		<option value="monthly" <?php selected( $interval, 'monthly' ); ?>>Monthly</option>
+	</select>
+	<p class="description">How often to automatically sync your Goodreads library</p>
+	<?php
+}
+
+function render_author_id_field(): void {
+	$author_id = get_option( 'goodreads_author_id', 1 );
+	echo '<input type="number" name="goodreads_author_id" value="' . absint( $author_id ) . '" min="1" style="width: 100px;" />';
+	echo '<p class="description">WordPress user ID to assign imported books to</p>';
+}
+
+function render_skip_covers_field(): void {
+	$skip = get_option( 'goodreads_skip_covers', false );
+	echo '<input type="checkbox" name="goodreads_skip_covers" value="1" ' . checked( $skip, true, false ) . ' />';
+	echo '<span>Skip downloading cover images</span>';
+}
+
+/**
+ * Run scheduled sync
+ */
+function run_scheduled_sync(): void {
+	$url       = get_option( 'goodreads_feed_url' );
+	$author_id = get_option( 'goodreads_author_id', 1 );
+	$skip_covers = get_option( 'goodreads_skip_covers', false );
+
+	if ( empty( $url ) ) {
+		update_option( 'goodreads_sync_error', 'Feed URL not configured' );
+		return;
+	}
+
+	$importer = new Goodreads_Importer();
+	$result   = $importer->import_from_url( $url, $author_id, $skip_covers );
+
+	if ( is_wp_error( $result ) ) {
+		update_option( 'goodreads_sync_error', $result->get_error_message() );
+		return;
+	}
+
+	// Update last sync time
+	update_option( 'goodreads_last_sync', time() );
+	update_option( 'goodreads_last_sync_count', $result );
+	delete_option( 'goodreads_sync_error' );
+}
+
+/**
+ * Schedule cron events
+ */
+function schedule_cron(): void {
+	if ( ! wp_next_scheduled( 'goodreads_sync_event' ) ) {
+		$interval = get_option( 'goodreads_sync_interval', 'daily' );
+		$recurrence = in_array( $interval, [ 'daily', 'weekly', 'monthly' ], true ) ? $interval : 'daily';
+		wp_schedule_event( time(), $recurrence, 'goodreads_sync_event' );
+	}
+}
+
+/**
+ * Reschedule cron based on interval setting
+ */
+function reschedule_cron(): void {
+	$interval = get_option( 'goodreads_sync_interval', 'daily' );
+
+	// Remove existing schedule
+	$timestamp = wp_next_scheduled( 'goodreads_sync_event' );
+	if ( $timestamp ) {
+		wp_unschedule_event( $timestamp, 'goodreads_sync_event' );
+	}
+
+	// Schedule new one
+	$recurrence = in_array( $interval, [ 'daily', 'weekly', 'monthly' ], true ) ? $interval : 'daily';
+	wp_schedule_event( time(), $recurrence, 'goodreads_sync_event' );
+}
+
+/**
+ * Settings helper class
+ */
+class Goodreads_Settings {
+	public static function sanitize_interval( $value ): string {
+		$allowed = [ 'daily', 'weekly', 'monthly' ];
+		return in_array( $value, $allowed, true ) ? $value : 'daily';
 	}
 }
