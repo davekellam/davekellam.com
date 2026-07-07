@@ -44,7 +44,7 @@ get_header();
 				<?php endif; ?>
 
 				<li>
-					<?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> - <?php echo esc_html( get_the_content() ); ?>
+					<?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?> - <?php echo wp_kses_post( get_the_content() ); ?>
 				</li>
 
 			<?php endwhile; ?>
