@@ -4,6 +4,7 @@
 
 @import "_base.css";
 @import "_layout.css";
+@import "_transitions.css";
 @import "_typography.css";
 @import "_nav.css";
 @import "_components.css";
