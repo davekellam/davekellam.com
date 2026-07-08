@@ -49,33 +49,3 @@ th {
 th {
 	font-weight: bold;
 }
-
-/* Screen-reader utility */
-.screen-reader-text {
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	word-wrap: normal;
-}
-
-.screen-reader-text:focus {
-	background: var(--wp--preset--color--background, #fff);
-	border-radius: 2px;
-	box-shadow: 0 0 0 2px var(--wp--preset--color--link, royalblue);
-	clip: auto;
-	clip-path: none;
-	color: var(--wp--preset--color--text, #404040);
-	display: block;
-	font-weight: bold;
-	height: auto;
-	left: 1rem;
-	padding: 0.75rem 1.25rem;
-	top: 1rem;
-	width: auto;
-	z-index: 100000;
-}
