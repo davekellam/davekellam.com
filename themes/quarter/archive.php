@@ -34,6 +34,10 @@ get_header();
 					<div class="entry-summary">
 						<?php the_excerpt(); ?>
 					</div>
+
+					<div class="entry-link">
+						&rarr; <a href="<?php the_permalink(); ?>"><?php esc_html_e( 'Link', 'quarter' ); ?></a>
+					</div>
 				</article>
 
 			<?php endwhile; ?>
