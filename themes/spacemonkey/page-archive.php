@@ -22,7 +22,7 @@ get_header(); ?>
 		<h2>Monthly Archive</h2>
 
 		<section class="archive-monthly">
-            <?php echo dk_get_monthly_archives(); ?>
+            <?php echo DaveKellam\Core\Helpers\dk_get_monthly_archives(); ?>
 		</section>
 
 		<h2 class="clear">Top 50 Tags</h2>
