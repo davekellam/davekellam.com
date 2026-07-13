@@ -9,11 +9,21 @@ namespace DaveKellam\Core\RSS;
 add_filter( 'the_content_feed', __NAMESPACE__ . '\\prepend_featured_image_to_content' );
 add_filter( 'the_excerpt_feed', __NAMESPACE__ . '\\prepend_featured_image_to_content' );
 
+// Video feed URL
+add_action( 'init', __NAMESPACE__ . '\\add_video_feed_rewrite_rule' );
+
 // Contact info
 add_action( 'rss2_head', __NAMESPACE__ . '\\add_managing_editor_to_rss' );
 
 // Add filter for Atom feed author information
 add_action( 'atom_head', __NAMESPACE__ . '\\add_author_to_atom' );
+
+/**
+ * Add rewrite rule for a clean /videos/feed/ URL.
+ */
+function add_video_feed_rewrite_rule() {
+	add_rewrite_rule( 'videos/feed/?$', 'index.php?post_type=video&feed=rss2', 'top' );
+}
 
 /**
  * Prepend featured image to RSS feed content
