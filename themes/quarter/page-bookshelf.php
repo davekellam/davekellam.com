@@ -56,10 +56,19 @@ get_header();
 					<div class="book-overlay">
 						<h3 class="book-title"><?php echo esc_html( get_the_title() ); ?></h3>
 						<?php
-						$author = get_post_meta( get_the_ID(), 'book_author', true );
+						$author    = get_post_meta( get_the_ID(), 'book_author', true );
+						$date_read = get_post_meta( get_the_ID(), 'book_read_date', true );
+						$rating    = get_post_meta( get_the_ID(), 'book_user_rating', true );
+
 						if ( $author ) :
 							?>
 							<p class="book-author">By <?php echo esc_html( $author ); ?></p>
+						<?php endif; ?>
+						<?php if ( $date_read ) : ?>
+							<p class="book-date-read">Read: <?php echo esc_html( gmdate( 'F j, Y', strtotime( $date_read ) ) ); ?></p>
+						<?php endif; ?>
+						<?php if ( $rating ) : ?>
+							<p class="book-rating">Rating: <?php echo esc_html( (int) $rating ); ?>/5</p>
 						<?php endif; ?>
 					</div>
 				</div>
