@@ -9,7 +9,6 @@
 .book-item {
     position: relative;
     overflow: hidden;
-    border-radius: 6px;
 }
 
 .book-cover img {
@@ -26,7 +25,7 @@
 .book-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.9));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9));
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -45,7 +44,7 @@
 
 .book-title {
     margin: 0;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.25;
     font-weight: bold;
 }
@@ -60,7 +59,7 @@
 
 .book-rating {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }

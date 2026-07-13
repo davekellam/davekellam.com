@@ -70,7 +70,7 @@ get_header();
 							</p>
 						<?php endif; ?>
 						<?php if ( $date_read ) : ?>
-							<p class="book-date-read">Read<br> <?php echo esc_html( gmdate( 'F j', $date_read ) ); ?></p>
+							<p class="book-date-read">Finished<br> <?php echo esc_html( gmdate( 'F j', $date_read ) ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
