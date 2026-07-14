@@ -11,7 +11,7 @@ get_header();
 <main class="site-main" id="main">
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?>>
 		<header class="entry-header">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<h1><?php the_title(); ?></h1>
 		</header>
 
 		<div class="page-content">
@@ -50,7 +50,7 @@ get_header();
 				<div class="book-item" tabindex="0">
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="book-cover">
-							<?php the_post_thumbnail( 'medium' ); ?>
+							<?php the_post_thumbnail(); ?>
 						</div>
 					<?php endif; ?>
 					<div class="book-overlay">
