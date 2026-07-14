@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+.book-item:focus {
+    outline: none;
+}
+
 .book-cover img {
     display: block;
     width: 100%;
@@ -18,7 +22,8 @@
     transition: transform 0.3s ease;
 }
 
-.book-item:hover .book-cover img {
+.book-item:hover .book-cover img,
+.book-item:focus .book-cover img {
     transform: scale(1.03);
 }
 
@@ -38,7 +43,8 @@
     color: white;
 }
 
-.book-item:hover .book-overlay {
+.book-item:hover .book-overlay,
+.book-item:focus .book-overlay {
     opacity: 1;
 }
 

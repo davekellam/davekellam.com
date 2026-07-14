@@ -47,7 +47,7 @@ get_header();
 					<?php $current_year = $year; ?>
 				<?php endif; ?>
 
-				<div class="book-item">
+				<div class="book-item" tabindex="0">
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="book-cover">
 							<?php the_post_thumbnail( 'medium' ); ?>
