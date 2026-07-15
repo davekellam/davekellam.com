@@ -26,6 +26,10 @@ add_filter( 'rest_endpoints', __NAMESPACE__ . '\\restrict_endpoints' );
 // Restrict sitemap generation
 add_filter( 'wp_sitemaps_add_provider', __NAMESPACE__ . '\\restrict_sitemaps', 10, 2 );
 
+
+// Remove 404 guessing
+add_filter( 'do_redirect_guess_404_permalink', '__return_false' );
+
 /**
  * Customize the admin appearance
  */
