@@ -13,9 +13,6 @@ remove_action( 'wp_head', 'wp_generator' );
 // Remove Windows Live Writer manifest link 🥔
 remove_action( 'wp_head', 'wlwmanifest_link' );
 
-// Remove the link to Really Simple Discovery service endpoint
-remove_action( 'wp_head', 'rsd_link' );
-
 // Changes to the admin area
 add_action( 'admin_init', __NAMESPACE__ . '\\customize_admin' );
 add_action( 'admin_menu', __NAMESPACE__ . '\\hide_comments_menu_badge', 999 );
@@ -28,9 +25,6 @@ add_filter( 'rest_endpoints', __NAMESPACE__ . '\\restrict_endpoints' );
 
 // Restrict sitemap generation
 add_filter( 'wp_sitemaps_add_provider', __NAMESPACE__ . '\\restrict_sitemaps', 10, 2 );
-
-// Disable XML-RPC
-add_filter( 'xmlrpc_enabled', '__return_false' );
 
 /**
  * Customize the admin appearance
