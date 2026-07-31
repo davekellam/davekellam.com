@@ -22,25 +22,23 @@ function render_bookshelf( array $attributes ): string {
 
 	$args = [
 		'post_type'      => 'book',
-		'post_status'    => 'publish',
-		'posts_per_page' => max( 1, (int) ( $attributes['count'] ?? 200 ) ),
+		'posts_per_page' => max( 1, $attributes['count'] ?? 200 ),
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 		'no_found_rows'  => true,
 	];
 
-	if ( 'reading' === $status ) {
-		$args[] = [
-			'post_status'    => [ 'publish', 'draft' ],
-			'posts_per_page' => max( 1, (int) ( $attributes['count'] ?? 10 ) ),
-			'meta_query'     => [
-				[
-					'key'     => 'book_read_date',
-					'compare' => 'NOT EXISTS',
-				],
+	if ( 'reading' === ( $attributes['status'] ?? 'read' ) ) {
+		$args['post_status'] = [ 'publish', 'draft' ];
+		$args['meta_query']  = [
+			[
+				'key'     => 'book_read_date',
+				'compare' => 'NOT EXISTS',
 			],
 		];
-	} 
+	} else {
+		$args['post_status'] = 'publish';
+	}
 
 	$books_query = new \WP_Query( $args );
 

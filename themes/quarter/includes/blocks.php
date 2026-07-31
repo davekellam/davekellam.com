@@ -1,6 +1,8 @@
 <?php
 /**
- * Registration functions for theme blocks
+ * Registration functions for theme blocks.
+ *
+ * @package Quarter
  */
 
 namespace Quarter\Theme\Blocks;
@@ -37,7 +39,7 @@ function register_bookshelf_block(): void {
 					'type'    => 'integer',
 					'default' => 200,
 				],
-                'groupByYear' => [
+				'groupByYear' => [
 					'label'   => __( 'Group by year', 'quarter' ),
 					'type'    => 'boolean',
 					'default' => true,
