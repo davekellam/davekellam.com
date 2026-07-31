@@ -46,7 +46,11 @@ function render_bookshelf( array $attributes ): string {
 		return '';
 	}
 
+	$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'wp-block-quarter-bookshelf' ) );
+
 	ob_start();
+
+	printf( '<div %1$s>', $wrapper_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() escapes its own output.
 
 	$title = trim( (string) ( $attributes['title'] ?? '' ) );
 	if ( '' !== $title ) {
@@ -58,6 +62,8 @@ function render_bookshelf( array $attributes ): string {
 	} else {
 		render_books_by_year( $books_query );
 	}
+
+	echo '</div>';
 
 	wp_reset_postdata();
 
