@@ -20,6 +20,11 @@ body {
 	line-height: 1.8;
 }
 
+/* Prevent horizontal scroll from full-bleed blocks on the frontend only. */
+body:not(.editor-styles-wrapper) {
+	overflow-x: clip;
+}
+
 img,
 video,
 svg {

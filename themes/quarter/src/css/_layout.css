@@ -19,14 +19,21 @@
 	min-height: 60vh;
 }
 
-/* Wide-aligned blocks get extra room */
-.alignwide {
-	max-width: var(--wp--style--global--wide-size, 64rem);
-	margin-inline: auto;
+/* Wide- and full-aligned blocks break out of the content column, centered on the viewport.
+ * Scoped to the frontend; the block editor handles alignment itself. */
+body:not(.editor-styles-wrapper) .alignwide,
+body:not(.editor-styles-wrapper) .alignfull {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
-.alignfull {
-	max-width: 100%;
+body:not(.editor-styles-wrapper) .alignwide {
+	width: min(var(--wp--style--global--wide-size, 64rem), 100vw);
+}
+
+body:not(.editor-styles-wrapper) .alignfull {
+	width: 100vw;
 }
 
 /* Entry list spacing */
