@@ -29,7 +29,10 @@ body:not(.editor-styles-wrapper) .alignfull {
 }
 
 body:not(.editor-styles-wrapper) .alignwide {
-	width: min(var(--wp--style--global--wide-size, 64rem), 100vw);
+	width: min(
+		var(--wp--style--global--wide-size, 64rem),
+		calc(100vw - 2 * var(--wp--preset--spacing--4, 1.5rem))
+	);
 }
 
 body:not(.editor-styles-wrapper) .alignfull {
