@@ -1,0 +1,147 @@
+/* _listening.css — listening.davekellam.com scrobble data */
+
+.listening-summary {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+	margin-block: var(--wp--preset--spacing--4, 1.5rem);
+}
+
+.listening-section {
+	margin-block: var(--wp--preset--spacing--6, 3rem);
+	padding-top: var(--wp--preset--spacing--4, 1.5rem);
+	border-top: 1px solid var(--wp--preset--color--border, #ccc);
+}
+
+.listening-title {
+	font-size: var(--wp--preset--font-size--medium, 1.125rem);
+}
+
+.listening-tracks,
+.listening-ranked,
+.listening-albums {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.listening-tracks > li:last-child,
+.listening-ranked > li:last-child,
+.listening-albums > li:last-child {
+	border-bottom: none;
+}
+
+.listening-track {
+	display: grid;
+	grid-template-columns: 3.5rem 1fr auto;
+	align-items: center;
+	column-gap: 0.9rem;
+	padding-block: 0.75rem;
+	border-bottom: 1px solid var(--wp--preset--color--subtle, #eee);
+}
+
+.listening-track-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	min-width: 0;
+}
+
+.listening-cover {
+	width: 3.5rem;
+	height: 3.5rem;
+	object-fit: cover;
+	display: block;
+	border: 1px solid var(--wp--preset--color--border, #ccc);
+}
+
+.listening-track-name {
+	font-weight: bold;
+	flex: 1;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.listening-track-artist,
+.listening-ranked-artist {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+	overflow-wrap: anywhere;
+}
+
+.listening-track-time {
+	display: flex;
+	flex-direction: column;
+	gap: 0.05rem;
+	font-size: 0.72rem;
+	color: var(--wp--preset--color--muted, #999);
+}
+
+.listening-ranked li {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	column-gap: 0.75rem;
+	row-gap: 0.1rem;
+	padding-block: 0.4rem;
+	border-bottom: 1px solid var(--wp--preset--color--subtle, #eee);
+}
+
+.listening-ranked-count {
+	font-size: var(--wp--preset--font-size--small, 0.8rem);
+	color: var(--wp--preset--color--muted, #999);
+}
+
+.listening-ranked li .listening-ranked-count {
+	grid-column: 2;
+	grid-row: 1 / -1;
+	justify-self: end;
+}
+
+.listening-ranked-name {
+	font-weight: bold;
+	overflow-wrap: anywhere;
+	grid-column: 1;
+}
+
+.listening-ranked-artist {
+	grid-column: 1;
+}
+
+.listening-albums {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.listening-album {
+	display: grid;
+	grid-template-columns: 3.5rem 1fr auto;
+	align-items: center;
+	gap: 0.9rem;
+	padding-block: 0.75rem;
+	border-bottom: 1px solid var(--wp--preset--color--subtle, #eee);
+}
+
+.listening-album-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	min-width: 0;
+}
+
+.listening-album-name {
+	font-weight: bold;
+	overflow-wrap: anywhere;
+}
+
+@media (max-width: 39.99rem) {
+	.listening-track {
+		grid-template-columns: 3.5rem 1fr;
+	}
+
+	.listening-track-time {
+		grid-column: 2;
+		flex-direction: row;
+		gap: 0.4rem;
+	}
+}
