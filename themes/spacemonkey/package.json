@@ -12,6 +12,6 @@
     "build": "sass assets/sass/style.scss ./style.css --style compressed"
   },
   "dependencies": {
-    "sass": "1.66.1"
+    "sass": "1.102.0"
   }
 }
