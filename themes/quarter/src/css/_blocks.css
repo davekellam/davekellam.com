@@ -92,3 +92,18 @@ img.aligncenter {
 .wp-block-gallery {
 	gap: var(--wp--preset--spacing--3, 1rem);
 }
+
+/* Latest Posts block — grid layout */
+.wp-block-latest-posts.is-grid {
+	display: grid !important;
+	gap: var(--wp--preset--spacing--4, 1.5rem);
+	grid-template-columns: repeat(var(--wp--block-latest-posts__columns, 3), 1fr);
+	list-style: none !important;
+	padding: 0 !important;
+	margin-block: 0 var(--wp--preset--spacing--4, 1.5rem) !important;
+}
+
+.wp-block-latest-posts.is-grid li {
+	margin: 0 !important;
+	list-style: none !important;
+}
