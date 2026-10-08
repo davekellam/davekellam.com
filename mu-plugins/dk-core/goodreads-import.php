@@ -183,7 +183,7 @@ class Goodreads_Importer {
 		$review_url     = trim( (string) $item->link );
 		$author_name    = trim( (string) $item->author_name );
 		$isbn           = trim( (string) $item->isbn );
-		$user_rating    = (int) $item->user_rating;
+		$user_rating    = $this->parse_rating( (string) $item->user_rating );
 		$read_at        = $this->parse_date( (string) $item->user_read_at );
 		$date_added     = $this->parse_date( (string) $item->user_date_added );
 		$published_year = trim( (string) $item->book_published );
@@ -204,6 +204,23 @@ class Goodreads_Importer {
 		$this->update_meta_value( $post_id, 'book_published_year', $published_year );
 		$this->update_meta_value( $post_id, 'book_num_pages', $num_pages );
 		$this->update_meta_value( $post_id, 'book_cover_url', $cover_url );
+	}
+
+	/**
+	 * Parse a Goodreads rating into the nearest 0.25 within the 0-5 range.
+	 *
+	 * @param string $raw Raw rating value from the RSS item.
+	 * @return string Sanitized rating ('' when unrated).
+	 */
+	private function parse_rating( string $raw ): string {
+		if ( '' === trim( $raw ) || ! is_numeric( $raw ) ) {
+			return '';
+		}
+
+		$rating = round( (float) $raw * 4 ) / 4;
+		$rating = max( 0, min( 5, $rating ) );
+
+		return $rating > 0 ? (string) $rating : '';
 	}
 
 	/**

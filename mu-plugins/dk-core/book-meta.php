@@ -41,6 +41,12 @@ function render_book_meta_box( \WP_Post $post ): void {
 			$key   = $field['key'];
 			$value = get_post_meta( $post->ID, $key, true );
 			$type  = $field['type'] ?? 'text';
+			$attrs = '';
+			foreach ( [ 'min', 'max', 'step' ] as $attr ) {
+				if ( isset( $field[ $attr ] ) ) {
+					$attrs .= sprintf( ' %s="%s"', $attr, esc_attr( (string) $field[ $attr ] ) );
+				}
+			}
 			?>
 			<tr>
 				<th scope="row"><label for="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $field['label'] ); ?></label></th>
@@ -51,6 +57,7 @@ function render_book_meta_box( \WP_Post $post ): void {
 						name="<?php echo esc_attr( $key ); ?>"
 						value="<?php echo esc_attr( (string) $value ); ?>"
 						class="regular-text"
+						<?php echo $attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from field config with esc_attr() on values. ?>
 					>
 				</td>
 			</tr>
@@ -92,6 +99,11 @@ function save_book_meta( int $post_id, \WP_Post $post ): void { // phpcs:ignore
 		}
 
 		$value = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
+
+		if ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
+			$value = (string) call_user_func( $field['sanitize'], $value );
+		}
+
 		if ( $value === '' ) {
 			delete_post_meta( $post_id, $key );
 			continue;
@@ -99,6 +111,23 @@ function save_book_meta( int $post_id, \WP_Post $post ): void { // phpcs:ignore
 
 		update_post_meta( $post_id, $key, $value );
 	}
+}
+
+/**
+ * Sanitize a book rating to the nearest 0.25 within the 0-5 range.
+ *
+ * @param string $value Raw rating value.
+ * @return string Sanitized rating ('' when unrated).
+ */
+function sanitize_book_rating( string $value ): string {
+	if ( '' === trim( $value ) || ! is_numeric( $value ) ) {
+		return '';
+	}
+
+	$rating = round( (float) $value * 4 ) / 4;
+	$rating = max( 0, min( 5, $rating ) );
+
+	return $rating > 0 ? (string) $rating : '';
 }
 
 /**
@@ -121,8 +150,13 @@ function get_book_meta_fields(): array {
 			'label' => 'ISBN',
 		],
 		[
-			'key'   => 'book_user_rating',
-			'label' => 'User Rating',
+			'key'      => 'book_user_rating',
+			'label'    => 'User Rating',
+			'type'     => 'number',
+			'min'      => '0',
+			'max'      => '5',
+			'step'     => '0.25',
+			'sanitize' => __NAMESPACE__ . '\\sanitize_book_rating',
 		],
 		[
 			'key'   => 'book_read_date',

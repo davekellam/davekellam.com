@@ -146,11 +146,27 @@ function render_book_item( bool $show_reading_meta ): void {
 			<?php if ( $show_reading_meta ) : ?>
 				<?php
 				$date_read = strtotime( (string) get_post_meta( get_the_ID(), 'book_read_date', true ) );
-				$rating    = max( 0, min( 5, (int) get_post_meta( get_the_ID(), 'book_user_rating', true ) ) );
+				$rating    = max( 0, min( 5, round( (float) get_post_meta( get_the_ID(), 'book_user_rating', true ) * 4 ) / 4 ) );
 				?>
-				<?php if ( $rating ) : ?>
-					<p class="book-rating" aria-label="<?php echo esc_attr( sprintf( '%d out of 5 stars', $rating ) ); ?>">
-						<span class="book-rating-stars" aria-hidden="true"><?php echo wp_kses_post( str_repeat( '&#9733;', $rating ) . str_repeat( '&#9734;', 5 - $rating ) ); ?></span>
+				<?php if ( $rating > 0 ) : ?>
+					<?php
+					$whole     = (int) floor( $rating );
+					$remainder = (int) round( ( $rating - $whole ) * 4 );
+
+					// Key = number of quarter-stars in the remainder.
+					$fractions = [
+						1 => '&#188;', // ¼ (one quarter)
+						2 => '&#189;', // ½ (one half)
+						3 => '&#190;', // ¾ (three quarters)
+					];
+
+					$stars = str_repeat( '&#9733;', $whole );
+					if ( $remainder > 0 ) {
+						$stars .= $fractions[ $remainder ];
+					}
+					?>
+					<p class="book-rating" aria-label="<?php echo esc_attr( sprintf( '%s out of 5 stars', (string) $rating ) ); ?>">
+						<span class="book-rating-stars" aria-hidden="true"><?php echo wp_kses_post( $stars ); ?></span>
 					</p>
 				<?php endif; ?>
 				<?php if ( $date_read ) : ?>
